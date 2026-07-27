@@ -1,30 +1,20 @@
-import { render, screen } from "@testing-library/react";
-import { vi } from "vitest";
-
-vi.mock("next/image", () => ({
-  default: (props: Record<string, unknown>) => (
-    <img {...props} alt={props.alt as string} />
-  ),
-}));
-
-vi.mock("@/public/logo.svg", () => ({
-  default: "/logo.svg",
-}));
+import { screen } from "@testing-library/react";
+import { renderWithIntl, t } from "@/utils/renderWithIntl";
 
 import { Header } from "./Header";
 
 describe("Header", () => {
   it("renders home link, logo and primary navigation", () => {
-    render(<Header />);
+    renderWithIntl(<Header />);
 
     expect(
       screen
-        .getByRole("link", { name: "Przejdź na stronę główną" })
+        .getByRole("link", { name: t("header_homeAria") })
         .getAttribute("href"),
     ).toBe("/");
-    expect(screen.getByAltText("POSTPRODUKCJADZWIEKU.PL")).toBeDefined();
+    expect(screen.getByTestId("logo")).toBeDefined();
     expect(
-      screen.getByRole("navigation", { name: "Główna nawigacja" }),
+      screen.getByRole("navigation", { name: t("header_nav_aria") }),
     ).toBeDefined();
   });
 });

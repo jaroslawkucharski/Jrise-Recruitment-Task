@@ -9,7 +9,9 @@ export function Logo() {
     <Image
       src={LogoSrc}
       alt={t("header_logoAlt")}
+      width={89}
       height={40}
+      data-testid="logo"
       loading="eager"
     />
   );

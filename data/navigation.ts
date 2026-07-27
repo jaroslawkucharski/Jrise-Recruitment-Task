@@ -1,6 +1,8 @@
+import type { MessageKey } from "@/i18n/messages";
+
 export type NavigationItem = {
   href: string;
-  labelKey: string;
+  labelKey: MessageKey;
   linkButton?: boolean;
 };
 
