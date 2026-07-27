@@ -1,3 +1,9 @@
+import { QuoteSection } from "@/components/organisms/QuoteSection/QuoteSection";
+
 export default function Home() {
-  return <main className="py-10 h-[200vh]">MAIN</main>;
+  return (
+    <main>
+      <QuoteSection />
+    </main>
+  );
 }
