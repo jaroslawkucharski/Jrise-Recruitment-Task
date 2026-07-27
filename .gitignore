@@ -11,7 +11,10 @@
 !.yarn/versions
 
 # testing
-/coverage
+/coverage/*
+!/coverage/badge/
+/coverage/badge/*
+!/coverage/badge/coverage.svg
 
 # next.js
 /.next/
