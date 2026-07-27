@@ -1,6 +1,18 @@
 import Image from "next/image";
-import LogoSrc from "@/public/logo.svg";
+import { useTranslations } from "next-intl";
+import LogoSrc from "@/public/logo.png";
 
 export function Logo() {
-  return <Image src={LogoSrc} alt="POSTPRODUKCJADZWIEKU.PL" height={40} />;
+  const t = useTranslations();
+
+  return (
+    <Image
+      src={LogoSrc}
+      alt={t("header_logoAlt")}
+      width={89}
+      height={40}
+      data-testid="logo"
+      loading="eager"
+    />
+  );
 }

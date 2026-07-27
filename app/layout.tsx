@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages, getTranslations } from "next-intl/server";
 import "./globals.css";
 import { Header } from "@/components/organisms/Header/Header";
 
@@ -10,23 +12,31 @@ const inter = Inter({
   fallback: ["Arial", "Helvetica", "sans-serif"],
 });
 
-export const metadata: Metadata = {
-  title: "POSTPRODUKCJADZWIEKU.PL",
-  description:
-    "Profesjonalna postprodukcja dźwięku dla twórców filmowych i marek.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations();
 
-export default function RootLayout({
+  return {
+    title: t("meta_title"),
+    description: t("meta_description"),
+  };
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="pl" className={`${inter.variable}`}>
-      <body className="min-h-screen bg-neutral-hover text-neutral-0">
-        <Header />
+  const locale = await getLocale();
+  const messages = await getMessages();
 
-        {children}
+  return (
+    <html lang={locale} className={`${inter.variable}`}>
+      <body className="min-h-screen bg-neutral-hover text-neutral-0">
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          <Header />
+
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

@@ -1,14 +1,16 @@
+import type { MessageKey } from "@/i18n/messages";
+
 export type NavigationItem = {
   href: string;
-  label: string;
+  labelKey: MessageKey;
   linkButton?: boolean;
 };
 
 export const navigationItems: NavigationItem[] = [
-  { href: "#kimjestem", label: "Kim jestem" },
-  { href: "#jakpracuje", label: "Jak pracuję" },
-  { href: "#corobie", label: "Co robię" },
-  { href: "#mix51", label: "Mix 5.1" },
-  { href: "#przedipo", label: "Przed i po" },
-  { href: "#porozmawiajmy", label: "Porozmawiajmy", linkButton: true },
+  { href: "#kimjestem", labelKey: "header_nav_about" },
+  { href: "#jakpracuje", labelKey: "header_nav_process" },
+  { href: "#corobie", labelKey: "header_nav_services" },
+  { href: "#mix51", labelKey: "header_nav_mix51" },
+  { href: "#przedipo", labelKey: "header_nav_beforeAfter" },
+  { href: "#porozmawiajmy", labelKey: "header_nav_contact", linkButton: true },
 ];
