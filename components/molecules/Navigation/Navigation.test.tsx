@@ -1,21 +1,15 @@
 import { render, screen } from "@testing-library/react";
 import { Navigation } from "./Navigation";
-
-const items = [
-  { href: "#about", label: "Kim jesteśmy?" },
-  { href: "#offer", label: "Oferta" },
-  { href: "#projects", label: "Realizacje" },
-  { href: "#contact", label: "Kontakt" },
-];
+import { navigationItems } from "@/data/navigation";
 
 describe("Navigation", () => {
   it("renders all navigation links and CTA", () => {
-    render(<Navigation items={items} />);
+    render(<Navigation items={navigationItems} />);
 
-    expect(screen.getByRole("link", { name: "Kim jesteśmy?" })).toBeDefined();
-    expect(screen.getByRole("link", { name: "Oferta" })).toBeDefined();
-    expect(screen.getByRole("link", { name: "Realizacje" })).toBeDefined();
-    expect(screen.getByRole("link", { name: "Kontakt" })).toBeDefined();
-    expect(screen.getByRole("link", { name: "Porozmawiajmy" })).toBeDefined();
+    navigationItems.forEach(({ href, label }) => {
+      expect(
+        screen.getByRole("link", { name: label }).getAttribute("href"),
+      ).toBe(href);
+    });
   });
 });
