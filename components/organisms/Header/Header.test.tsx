@@ -2,7 +2,9 @@ import { render, screen } from "@testing-library/react";
 import { vi } from "vitest";
 
 vi.mock("next/image", () => ({
-  default: (props: Record<string, unknown>) => <img {...props} alt={props.alt as string} />,
+  default: (props: Record<string, unknown>) => (
+    <img {...props} alt={props.alt as string} />
+  ),
 }));
 
 vi.mock("@/public/logo.svg", () => ({
