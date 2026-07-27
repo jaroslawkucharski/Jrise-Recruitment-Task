@@ -3,19 +3,23 @@
 import AutoScroll from "embla-carousel-auto-scroll";
 
 import useEmblaCarousel from "embla-carousel-react";
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { quotes } from "@/data/quotes";
 
-const AUTO_SCROLL_SPEED = 1.2;
+type QuoteSectionProps = {
+  quotes: string[];
+};
 
-export function QuoteSection() {
-  const repeatedQuotes = useMemo(() => [...quotes, ...quotes], []);
+export function QuoteSection({ quotes }: QuoteSectionProps) {
+  const t = useTranslations();
+
+  const repeatedQuotes = useMemo(() => [...quotes, ...quotes], [quotes]);
 
   const autoScroll = useMemo(
     () =>
       AutoScroll({
         direction: "forward",
-        speed: AUTO_SCROLL_SPEED,
+        speed: 2,
         startDelay: 0,
         playOnInit: true,
         stopOnInteraction: false,
@@ -75,8 +79,8 @@ export function QuoteSection() {
   return (
     <section
       id="quotes"
-      aria-label="Cytaty"
-      className="relative h-149 w-full overflow-hidden bg-black"
+      aria-label={t("quote_aria")}
+      className="relative h-60 lg:h-149 w-full overflow-hidden bg-black"
     >
       <div className="flex h-full items-center">
         <div ref={emblaRef} className="w-full overflow-hidden">
@@ -86,24 +90,28 @@ export function QuoteSection() {
 
               return (
                 <article
-                  key={`${quote.id}-${index}`}
+                  key={`${quote}-${index}`}
                   className="min-w-0 shrink-0 grow-0 basis-auto"
                 >
                   <div
                     className={`
-                      mx-auto w-fit
-                      transition-[filter,transform,opacity]
-                      duration-500 ease-out
+                      mx-auto w-fit transform-gpu will-change-transform
+                      transition-[transform,opacity]
+                      duration-300 ease-out
                       ${
                         isActive
-                          ? "scale-100 opacity-100 blur-0"
-                          : "scale-[0.985] opacity-50 blur-xs"
+                          ? "scale-100 opacity-100 blur-0 [text-shadow:0_0_24px_rgba(255,255,255,0.08)]"
+                          : "scale-[0.985] opacity-42 blur-[2px]"
                       }
                     `}
                   >
-                    <p className="text-[32px] font-medium md:text-[48px] ml-30 md:ml-60">
-                      <span className="block">{quote.lines[0]}</span>
-                      <span className="block">{quote.lines[1]}</span>
+                    <p className="ml-30 text-[32px] font-medium text-white lg:ml-60 lg:text-[48px]">
+                      {t.rich(quote, {
+                        br: () => <br />,
+                        text: (chunk) => (
+                          <span className="text-brand-green">{chunk}</span>
+                        ),
+                      })}
                     </p>
                   </div>
                 </article>
