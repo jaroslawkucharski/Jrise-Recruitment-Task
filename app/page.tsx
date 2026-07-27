@@ -1,3 +1,3 @@
 export default function Home() {
-  return <main>MAIN</main>;
+  return <main className="py-10 h-[200vh]">MAIN</main>;
 }
