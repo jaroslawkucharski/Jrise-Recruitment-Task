@@ -4,9 +4,12 @@ import clsx from "clsx";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Button } from "@/components/atoms/Button/Button";
-import { Box } from "@/components/atoms/Box/Box";
+import { Box, BoxPaddingTypes } from "@/components/atoms/Box/Box";
 import { Heading } from "@/components/atoms/Heading/Heading";
-import { HoverImage } from "@/components/atoms/HoverImage/HoverImage";
+import {
+  HoverImage,
+  type ImageDimensions,
+} from "@/components/atoms/HoverImage/HoverImage";
 import ArrowLeft from "@/public/arrow-left.svg";
 import ArrowRight from "@/public/arrow-right.svg";
 import Rectangle from "@/public/rectangle.svg";
@@ -16,6 +19,7 @@ export type SlideTypes = {
   description: string;
   imageAlt: string;
   imageSrc: string;
+  imageSrcDimensions: ImageDimensions;
   colorImageSrc: string;
   isImageLoadingEager?: boolean;
 };
@@ -25,6 +29,9 @@ export type SlidesSectionProps = {
   sectionName: string;
   ariaLabel: string;
   slides: SlideTypes[];
+  boxPadding?: BoxPaddingTypes;
+  hasBackground?: boolean;
+  reverse?: boolean;
 };
 
 export function SlidesSection({
@@ -32,6 +39,9 @@ export function SlidesSection({
   id,
   sectionName,
   slides,
+  boxPadding,
+  hasBackground = true,
+  reverse = false,
 }: SlidesSectionProps) {
   const t = useTranslations();
 
@@ -65,18 +75,25 @@ export function SlidesSection({
         <HoverImage
           alt={t(activeSlide.imageAlt)}
           src={activeSlide.imageSrc}
+          srcDimensions={activeSlide.imageSrcDimensions}
           hoverSrc={activeSlide.colorImageSrc}
-          sizes="(min-width: 1280px) 580px, (min-width: 1024px) 100%"
+          sizes="(min-width: 1024px) 580px, 100%"
+          className={clsx(reverse && "lg:order-2")}
           isLoadingEager={activeSlide.isImageLoadingEager}
         />
 
-        <div className="flex h-full min-h-full flex-col justify-between gap-8">
+        <div
+          className={clsx(
+            "flex h-full min-h-full flex-col justify-between gap-8",
+            reverse && "lg:order-1",
+          )}
+        >
           <div className="flex flex-col gap-8 lg:gap-10">
             <div className="flex items-center gap-3">
               <Rectangle aria-hidden="true" />
 
               <Heading level="h4" weight={500}>
-                {sectionName}
+                {t(sectionName)}
               </Heading>
             </div>
 
@@ -84,6 +101,8 @@ export function SlidesSection({
               currentStep={activeIndex + 1}
               title={activeSlide.title}
               description={activeSlide.description}
+              padding={boxPadding}
+              hasBackground={hasBackground}
             />
           </div>
 
@@ -95,7 +114,7 @@ export function SlidesSection({
                     "hover:[&_path]:fill-neutral-hover",
                 )}
                 onClick={goToPrevious}
-                aria-label={t("section_second_slides_prev")}
+                aria-label={t("section_slides_prev")}
                 disabled={previousButtonDisabled}
                 isSquare
                 data-testid="slides-prev-button"
@@ -108,7 +127,7 @@ export function SlidesSection({
                   !nextButtonDisabled && "hover:[&_path]:fill-neutral-hover",
                 )}
                 onClick={goToNext}
-                aria-label={t("section_second_slides_next")}
+                aria-label={t("section_slides_next")}
                 disabled={nextButtonDisabled}
                 isSquare
                 data-testid="slides-next-button"
