@@ -6,11 +6,13 @@ describe("Button", () => {
     render(<Button>Wycen projekt</Button>);
 
     const button = screen.getByRole("button", { name: "Wycen projekt" });
+    const text = screen.getByText("Wycen projekt");
 
     expect(button.getAttribute("type")).toBe("button");
     expect(button.classList.contains("border-brand-green")).toBe(true);
     expect(button.classList.contains("bg-brand-green/5")).toBe(true);
-    expect(button.classList.contains("text-[16px]")).toBe(true);
+    expect(text.classList.contains("text-[16px]")).toBe(true);
+    expect(text.classList.contains("font-bold")).toBe(true);
   });
 
   it("supports custom variant, size and className", () => {
@@ -21,10 +23,12 @@ describe("Button", () => {
     );
 
     const button = screen.getByRole("button", { name: "Wyślij" });
+    const text = screen.getByText("Wyślij");
 
     expect(button.getAttribute("type")).toBe("submit");
     expect(button.classList.contains("bg-transparent")).toBe(true);
-    expect(button.classList.contains("text-[14px]")).toBe(true);
+    expect(text.classList.contains("text-[14px]")).toBe(true);
+    expect(text.classList.contains("font-bold")).toBe(true);
     expect(button.classList.contains("w-full")).toBe(true);
   });
 });
