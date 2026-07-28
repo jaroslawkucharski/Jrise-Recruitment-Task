@@ -37,6 +37,7 @@ export function QuoteSection({ quotes }: QuoteSectionProps) {
       startIndex: quotes.length,
       skipSnaps: false,
       containScroll: false,
+      watchDrag: false,
     },
     [autoScroll],
   );
