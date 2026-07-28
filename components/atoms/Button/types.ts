@@ -8,6 +8,7 @@ export type ButtonBaseProps = {
   children: ReactNode;
   variant?: ButtonVariant;
   size?: ButtonSize;
+  isSquare?: boolean;
 };
 
 export type ButtonProps = ButtonBaseProps &
