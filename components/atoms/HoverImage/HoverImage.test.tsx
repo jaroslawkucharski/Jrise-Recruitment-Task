@@ -7,6 +7,7 @@ describe("HoverImage", () => {
       <HoverImage
         alt="Opis obrazka"
         src="/base.webp"
+        srcDimensions={{ width: 1160, height: 944 }}
         hoverSrc="/hover.webp"
         sizes="100vw"
         isLoadingEager
@@ -29,7 +30,14 @@ describe("HoverImage", () => {
   });
 
   it("does not render hover image when hoverSrc is missing", () => {
-    render(<HoverImage alt="Opis obrazka" src="/base.webp" sizes="100vw" />);
+    render(
+      <HoverImage
+        alt="Opis obrazka"
+        src="/base.webp"
+        srcDimensions={{ width: 1160, height: 944 }}
+        sizes="100vw"
+      />,
+    );
 
     expect(screen.queryByTestId("hover-image-hover")).toBeNull();
   });

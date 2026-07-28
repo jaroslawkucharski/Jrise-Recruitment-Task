@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@source inline("p-[0px] p-[16px]");
+
 @theme {
   --color-brand-green: #00ff00;
   --color-brand-green-5: color-mix(

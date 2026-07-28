@@ -80,7 +80,7 @@ export function QuoteSection({ quotes }: QuoteSectionProps) {
   return (
     <section
       aria-label={t("quote_aria")}
-      className="relative h-60 lg:h-149 w-full overflow-hidden bg-black"
+      className="relative w-full overflow-hidden bg-black"
     >
       <div className="flex h-full items-center">
         <div ref={emblaRef} className="w-full overflow-hidden">

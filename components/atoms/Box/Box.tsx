@@ -5,13 +5,15 @@ import { useTranslations } from "next-intl";
 import { Heading } from "@/components/atoms/Heading/Heading";
 import { Text } from "@/components/atoms/Text/Text";
 
+export type BoxPaddingTypes = 0 | 16;
+
 type BoxProps = {
   className?: string;
   contentClassName?: string;
   currentStep?: number;
   description: string;
   hasBackground?: boolean;
-  padding?: 0 | 16;
+  padding?: BoxPaddingTypes;
   title?: string;
 };
 
@@ -31,7 +33,7 @@ export function Box({
       className={clsx(
         "flex flex-1 flex-col justify-between",
         hasBackground && "bg-neutral-800",
-        padding === 16 ? "p-4" : "p-0",
+        `p-[${padding}px]`,
         className,
       )}
       data-testid="box"
@@ -61,13 +63,26 @@ export function Box({
           </>
         ) : null}
 
-        <Text className="text-neutral-300" data-testid="box-description">
+        <div
+          className={clsx(
+            "text-[16px] font-normal [&_p+p]:mt-6",
+            hasBackground ? "text-neutral-300" : "text-white",
+          )}
+          data-testid="box-description"
+        >
           {t.rich(description, {
-            b: (chunks) => (
-              <strong className="font-semibold text-white">{chunks}</strong>
+            highlight: (chunks) => (
+              <span
+                className={clsx(
+                  hasBackground ? "text-neutral-0" : "text-brand-green",
+                )}
+              >
+                {chunks}
+              </span>
             ),
+            p: (chunks) => <p>{chunks}</p>,
           })}
-        </Text>
+        </div>
       </div>
     </div>
   );

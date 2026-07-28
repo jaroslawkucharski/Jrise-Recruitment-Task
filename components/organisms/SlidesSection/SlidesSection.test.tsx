@@ -21,7 +21,7 @@ describe("SlidesSection", () => {
     renderWithIntl(<SlidesSection {...sectionSecondSlides} />);
 
     expect(
-      screen.getByRole("heading", { name: sectionSecondSlides.sectionName }),
+      screen.getByRole("heading", { name: t(sectionSecondSlides.sectionName) }),
     ).toBeDefined();
     expect(screen.getByTestId("box-title").textContent).toBe(
       t("section_second_slides_slide_1_title"),
@@ -64,10 +64,19 @@ describe("SlidesSection", () => {
     renderWithIntl(<SlidesSection {...sectionSecondSlides} />);
 
     expect(
-      screen.getByRole("button", { name: t("section_second_slides_prev") }),
+      screen.getByRole("button", { name: t("section_slides_prev") }),
     ).toBeDefined();
     expect(
-      screen.getByRole("button", { name: t("section_second_slides_next") }),
+      screen.getByRole("button", { name: t("section_slides_next") }),
     ).toBeDefined();
+  });
+
+  it("can reverse desktop column order so the image is rendered second", () => {
+    renderWithIntl(<SlidesSection {...sectionSecondSlides} reverse />);
+
+    expect(screen.getByTestId("hover-image").className).toContain("lg:order-2");
+    expect(screen.getByTestId("hover-image").nextElementSibling?.className).toContain(
+      "lg:order-1",
+    );
   });
 });
