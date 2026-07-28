@@ -1,11 +1,16 @@
+import { SlidesSection } from "@/components/organisms/SlidesSection/SlidesSection";
 import { QuoteSection } from "@/components/organisms/QuoteSection/QuoteSection";
+import { sectionSecondSlides } from "@/data/slides";
+import { quotesFirst, quotesSecond } from "@/data/quotes";
 
 export default function Home() {
   return (
     <main>
-      <QuoteSection quotes={["quote_item_1", "quote_item_2", "quote_item_3"]} />
+      <QuoteSection quotes={quotesFirst} />
 
-      <QuoteSection quotes={["quote_item_4", "quote_item_5", "quote_item_6"]} />
+      <SlidesSection {...sectionSecondSlides} />
+
+      <QuoteSection quotes={quotesSecond} />
     </main>
   );
 }

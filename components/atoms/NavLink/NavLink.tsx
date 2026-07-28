@@ -1,12 +1,11 @@
 import clsx from "clsx";
 import Link from "next/link";
-import type { ComponentPropsWithoutRef, ReactNode } from "react";
+import type { ComponentPropsWithoutRef } from "react";
+import { Text } from "@/components/atoms/Text/Text";
 
 type NavLinkProps = {
-  children: ReactNode;
-  className?: string;
   isActive?: boolean;
-} & Omit<ComponentPropsWithoutRef<typeof Link>, "className" | "children">;
+} & ComponentPropsWithoutRef<typeof Link>;
 
 export function NavLink({
   children,
@@ -18,14 +17,16 @@ export function NavLink({
   return (
     <Link
       className={clsx(
-        "text-[14px] font-medium text-neutral-300 transition-colors hover:text-brand-green active:text-brand-green",
+        "text-neutral-300 transition-colors hover:text-brand-green active:text-brand-green",
         isActive && "text-brand-green",
         className,
       )}
       href={href}
       {...props}
     >
-      {children}
+      <Text size={14} weight={500}>
+        {children}
+      </Text>
     </Link>
   );
 }

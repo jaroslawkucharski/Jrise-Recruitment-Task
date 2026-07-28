@@ -2,12 +2,21 @@
 
 @theme {
   --color-brand-green: #00ff00;
-  --color-brand-green-5: color-mix(in srgb, var(--color-brand-green) 5%, transparent);
-  --color-brand-green-10: color-mix(in srgb, var(--color-brand-green) 10%, transparent);
+  --color-brand-green-5: color-mix(
+    in srgb,
+    var(--color-brand-green) 5%,
+    transparent
+  );
+  --color-brand-green-10: color-mix(
+    in srgb,
+    var(--color-brand-green) 10%,
+    transparent
+  );
 
   --color-neutral-0: #ffffff;
   --color-neutral-300: #a7aaaa;
   --color-neutral-400: #898e8e;
+  --color-neutral-700: #343636;
   --color-neutral-800: #181919;
   --color-neutral-hover: #000000;
 }

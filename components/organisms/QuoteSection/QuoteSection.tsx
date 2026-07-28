@@ -37,6 +37,7 @@ export function QuoteSection({ quotes }: QuoteSectionProps) {
       startIndex: quotes.length,
       skipSnaps: false,
       containScroll: false,
+      watchDrag: false,
     },
     [autoScroll],
   );
@@ -78,7 +79,6 @@ export function QuoteSection({ quotes }: QuoteSectionProps) {
 
   return (
     <section
-      id="quotes"
       aria-label={t("quote_aria")}
       className="relative h-60 lg:h-149 w-full overflow-hidden bg-black"
     >

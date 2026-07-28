@@ -1,0 +1,44 @@
+import { screen } from "@testing-library/react";
+import { Box } from "./Box";
+import { renderWithIntl, t } from "@/utils/renderWithIntl";
+
+describe("Box", () => {
+  it("renders translated title, description and formatted step", () => {
+    renderWithIntl(
+      <Box
+        currentStep={3}
+        title="section_second_slides_slide_1_title"
+        description="section_second_slides_slide_1_description"
+      />,
+    );
+
+    expect(screen.getByTestId("box")).toBeDefined();
+    expect(screen.getByTestId("box-title").textContent).toBe(
+      t("section_second_slides_slide_1_title"),
+    );
+    expect(screen.getByTestId("box-description").textContent).toContain(
+      "Każdy projekt startuje",
+    );
+    expect(screen.getByTestId("box-step").textContent).toBe("03");
+    expect(screen.getByTestId("box-step").getAttribute("aria-label")).toBe(
+      `${t("box_step_label")} 03`,
+    );
+  });
+
+  it("can render without title and without background padding", () => {
+    renderWithIntl(
+      <Box
+        description="section_second_slides_slide_2_description"
+        hasBackground={false}
+        padding={0}
+      />,
+    );
+
+    const box = screen.getByTestId("box");
+
+    expect(screen.queryByTestId("box-title")).toBeNull();
+    expect(screen.queryByTestId("box-step")).toBeNull();
+    expect(box.classList.contains("bg-neutral-800")).toBe(false);
+    expect(box.classList.contains("p-0")).toBe(true);
+  });
+});
