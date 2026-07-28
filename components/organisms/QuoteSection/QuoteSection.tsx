@@ -3,16 +3,16 @@
 import AutoScroll from "embla-carousel-auto-scroll";
 
 import useEmblaCarousel from "embla-carousel-react";
-import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { MessageKey } from "@/i18n/messages";
+import { useAppTranslations } from "@/i18n/translations";
 
 type QuoteSectionProps = {
   quotes: MessageKey[];
 };
 
 export function QuoteSection({ quotes }: QuoteSectionProps) {
-  const t = useTranslations();
+  const { t, rich } = useAppTranslations();
 
   const repeatedQuotes = useMemo(() => [...quotes, ...quotes], [quotes]);
 
@@ -107,8 +107,7 @@ export function QuoteSection({ quotes }: QuoteSectionProps) {
                     `}
                   >
                     <p className="ml-30 text-[32px] font-medium text-white lg:ml-60 lg:text-[48px]">
-                      {t.rich(quote, {
-                        br: () => <br />,
+                      {rich(quote, {
                         text: (chunk) => (
                           <span className="text-brand-green">{chunk}</span>
                         ),
