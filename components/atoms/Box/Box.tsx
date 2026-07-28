@@ -4,6 +4,7 @@ import clsx from "clsx";
 import { useTranslations } from "next-intl";
 import { Heading } from "@/components/atoms/Heading/Heading";
 import { Text } from "@/components/atoms/Text/Text";
+import { MessageKey } from "@/i18n/messages";
 
 export type BoxPaddingTypes = 0 | 16;
 
@@ -11,10 +12,10 @@ type BoxProps = {
   className?: string;
   contentClassName?: string;
   currentStep?: number;
-  description: string;
+  description: MessageKey;
   hasBackground?: boolean;
   padding?: BoxPaddingTypes;
-  title?: string;
+  title?: MessageKey;
 };
 
 export function Box({

@@ -5,9 +5,10 @@ import AutoScroll from "embla-carousel-auto-scroll";
 import useEmblaCarousel from "embla-carousel-react";
 import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { MessageKey } from "@/i18n/messages";
 
 type QuoteSectionProps = {
-  quotes: string[];
+  quotes: MessageKey[];
 };
 
 export function QuoteSection({ quotes }: QuoteSectionProps) {
@@ -82,7 +83,7 @@ export function QuoteSection({ quotes }: QuoteSectionProps) {
       aria-label={t("quote_aria")}
       className="relative w-full overflow-hidden bg-black"
     >
-      <div className="flex h-full items-center">
+      <div aria-hidden="true" className="flex h-full items-center">
         <div ref={emblaRef} className="w-full overflow-hidden">
           <div className="flex items-center">
             {repeatedQuotes.map((quote, index) => {
