@@ -60,13 +60,6 @@ export default async function RootLayout({
     <html lang={locale} className={`${inter.variable}`}>
       <body className="min-h-screen bg-neutral-hover text-neutral-0">
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <a
-            href="#main-content"
-            className="sr-only absolute left-4 top-4 z-50 rounded-sm bg-black px-4 py-3 text-white focus:not-sr-only focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 focus-visible:ring-offset-black"
-          >
-            {messages.skip_to_content}
-          </a>
-
           <Header />
 
           {children}
