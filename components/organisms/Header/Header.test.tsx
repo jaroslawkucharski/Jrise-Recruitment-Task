@@ -7,6 +7,7 @@ describe("Header", () => {
   it("renders home link, logo and primary navigation", () => {
     renderWithIntl(<Header />);
 
+    expect(screen.getByRole("banner")).toBeDefined();
     expect(
       screen
         .getByRole("link", { name: t("header_homeAria") })

@@ -34,19 +34,24 @@ export function Box({
         padding === 16 ? "p-4" : "p-0",
         className,
       )}
+      data-testid="box"
     >
       <div className={clsx("space-y-5", contentClassName)}>
         {title ? (
           <>
             <div className="flex items-center justify-between gap-4">
-              <Heading level="h5" weight={500}>
+              <Heading level="h5" weight={500} data-testid="box-title">
                 {t(title)}
               </Heading>
 
               {currentStep ? (
-                <span className="flex h-9 w-9 items-center justify-center border border-neutral-700">
+                <span
+                  aria-label={`${t("box_step_label")} ${String(currentStep).padStart(2, "0")}`}
+                  className="flex h-9 w-9 items-center justify-center border border-neutral-700"
+                  data-testid="box-step"
+                >
                   <Text size={14} weight={700}>
-                    {currentStep}
+                    {String(currentStep).padStart(2, "0")}
                   </Text>
                 </span>
               ) : null}
@@ -56,7 +61,7 @@ export function Box({
           </>
         ) : null}
 
-        <Text className="text-neutral-300">
+        <Text className="text-neutral-300" data-testid="box-description">
           {t.rich(description, {
             b: (chunks) => (
               <strong className="font-semibold text-white">{chunks}</strong>

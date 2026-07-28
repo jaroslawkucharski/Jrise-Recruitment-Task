@@ -59,6 +59,7 @@ export function SlidesSection({
       id={id}
       aria-label={ariaLabel}
       className="mx-auto w-full max-w-300 overflow-hidden bg-black px-4 sm:px-6 md:px-12 xl:px-0"
+      data-testid="slides-section"
     >
       <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,580px)_minmax(0,1fr)] lg:gap-10">
         <HoverImage
@@ -94,9 +95,10 @@ export function SlidesSection({
                     "hover:[&_path]:fill-neutral-hover",
                 )}
                 onClick={goToPrevious}
-                aria-label={t("process_prev")}
+                aria-label={t("section_second_slides_prev")}
                 disabled={previousButtonDisabled}
                 isSquare
+                data-testid="slides-prev-button"
               >
                 <ArrowRight aria-hidden="true" />
               </Button>
@@ -106,9 +108,10 @@ export function SlidesSection({
                   !nextButtonDisabled && "hover:[&_path]:fill-neutral-hover",
                 )}
                 onClick={goToNext}
-                aria-label={t("process_next")}
+                aria-label={t("section_second_slides_next")}
                 disabled={nextButtonDisabled}
                 isSquare
+                data-testid="slides-next-button"
               >
                 <ArrowLeft aria-hidden="true" />
               </Button>

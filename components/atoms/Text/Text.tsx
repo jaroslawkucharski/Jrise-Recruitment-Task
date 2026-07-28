@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import type { ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 type TextSizeTypes = 12 | 14 | 16;
 type TextWeightTypes = 400 | 500 | 600 | 700;
@@ -9,7 +9,7 @@ type TextProps = {
   children: ReactNode;
   size?: TextSizeTypes;
   weight?: TextWeightTypes;
-};
+} & Omit<ComponentPropsWithoutRef<"span">, "children" | "className">;
 
 const sizeClassNames: Record<TextSizeTypes, string> = {
   12: "text-[12px]",
@@ -29,9 +29,11 @@ export function Text({
   className,
   size = 16,
   weight = 400,
+  ...props
 }: TextProps) {
   return (
     <span
+      {...props}
       className={clsx(
         sizeClassNames[size],
         weightClassNames[weight],

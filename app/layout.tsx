@@ -18,6 +18,17 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: t("meta_title"),
     description: t("meta_description"),
+    openGraph: {
+      title: t("meta_title"),
+      description: t("meta_description"),
+      type: "website",
+      locale: "pl_PL",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: t("meta_title"),
+      description: t("meta_description"),
+    },
   };
 }
 

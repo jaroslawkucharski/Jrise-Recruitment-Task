@@ -1,5 +1,5 @@
 import clsx from "clsx";
-import type { ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 type LevelTypes = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 type WeightTypes = 400 | 500 | 600 | 700;
@@ -9,7 +9,7 @@ type HeadingProps = {
   className?: string;
   level: LevelTypes;
   weight?: WeightTypes;
-};
+} & Omit<ComponentPropsWithoutRef<"h1">, "children" | "className">;
 
 const sizeClassNames: Record<LevelTypes, string> = {
   h1: "text-[38px]",
@@ -32,11 +32,13 @@ export function Heading({
   className,
   level = "h1",
   weight = 400,
+  ...props
 }: HeadingProps) {
   const HeadingTag: LevelTypes = level;
 
   return (
     <HeadingTag
+      {...props}
       className={clsx(
         sizeClassNames[level],
         weightClassNames[weight],

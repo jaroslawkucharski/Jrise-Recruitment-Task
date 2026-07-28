@@ -11,8 +11,8 @@ export function Logo() {
       alt={t("header_logoAlt")}
       width={89}
       height={40}
-      data-testid="logo"
       loading="eager"
+      data-testid="logo"
     />
   );
 }
