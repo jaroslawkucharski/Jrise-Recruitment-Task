@@ -1,11 +1,17 @@
 import clsx from "clsx";
 import Image from "next/image";
 
+export type ImageDimensions = {
+  width: number;
+  height: number;
+};
+
 type HoverImageProps = {
   alt: string;
   src: string;
+  srcDimensions: ImageDimensions;
   hoverSrc?: string;
-  sizes: string;
+  sizes?: string;
   className?: string;
   isLoadingEager?: boolean;
 };
@@ -16,6 +22,7 @@ export function HoverImage({
   hoverSrc,
   sizes,
   src,
+  srcDimensions,
   isLoadingEager,
 }: HoverImageProps) {
   const loading = isLoadingEager ? "eager" : undefined;
@@ -23,7 +30,7 @@ export function HoverImage({
   return (
     <div
       className={clsx(
-        "group relative aspect-580/472 overflow-hidden bg-neutral-800",
+        "group relative overflow-hidden bg-neutral-800",
         className,
       )}
       data-testid="hover-image"
@@ -31,8 +38,9 @@ export function HoverImage({
       <Image
         src={src}
         alt={alt}
-        fill
-        className="object-cover transition-opacity duration-300 group-hover:opacity-0"
+        width={srcDimensions.width}
+        height={srcDimensions.height}
+        className="block w-full transition-opacity duration-300 group-hover:opacity-0"
         sizes={sizes}
         loading={loading}
         data-testid="hover-image-base"
@@ -43,8 +51,9 @@ export function HoverImage({
           src={hoverSrc}
           alt=""
           aria-hidden="true"
-          fill
-          className="object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          width={srcDimensions.width}
+          height={srcDimensions.height}
+          className="absolute inset-0 w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           sizes={sizes}
           loading={loading}
           data-testid="hover-image-hover"
