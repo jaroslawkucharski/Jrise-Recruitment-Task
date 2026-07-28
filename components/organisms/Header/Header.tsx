@@ -9,12 +9,14 @@ export function Header() {
   const t = useTranslations();
 
   return (
-    <header className="sticky top-0 w-full mx-auto flex max-w-300 items-center justify-between gap-6 px-4 py-4 sm:px-6 md:px-12 xl:px-30">
-      <Link href={"/"} aria-label={t("header_homeAria")}>
-        <Logo />
-      </Link>
+    <div className="sticky top-0 z-10 w-full bg-neutral-hover/70 backdrop-blur-md shadow-xl/30">
+      <header className="w-full mx-auto flex max-w-300 items-center justify-between gap-6 px-4 py-4 sm:px-6 md:px-12 xl:px-0">
+        <Link href={"/"} aria-label={t("header_homeAria")}>
+          <Logo />
+        </Link>
 
-      <Navigation items={navigationItems} />
-    </header>
+        <Navigation items={navigationItems} />
+      </header>
+    </div>
   );
 }
