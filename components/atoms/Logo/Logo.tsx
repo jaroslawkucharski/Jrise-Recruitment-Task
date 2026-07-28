@@ -8,7 +8,7 @@ export function Logo() {
   return (
     <Image
       src={LogoSrc}
-      alt={t("header_logoAlt")}
+      alt={t("meta_title")}
       width={89}
       height={40}
       loading="eager"

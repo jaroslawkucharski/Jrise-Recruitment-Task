@@ -25,7 +25,7 @@ export function getButtonClassName({
   isSquare?: boolean;
 }) {
   return clsx(
-    "flex cursor-pointer items-center justify-center transition-colors duration-200 disabled:cursor-not-allowed",
+    "flex cursor-pointer items-center justify-center transition-colors duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-hover disabled:cursor-not-allowed",
     isSquare ? "h-[56px] w-[56px] p-0" : sizeClassNames[size],
     variantClassNames[variant],
     className,

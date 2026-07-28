@@ -3,10 +3,16 @@ import { SlidesSection } from "@/components/organisms/SlidesSection/SlidesSectio
 import { QuoteSection } from "@/components/organisms/QuoteSection/QuoteSection";
 import { sectionFirstSlides, sectionSecondSlides } from "@/data/slides";
 import { quotesFirst, quotesSecond } from "@/data/quotes";
+import { getAppTranslations } from "@/i18n/translations";
 
-export default function Home() {
+export default async function Home() {
+  const { rich } = await getAppTranslations();
+
   return (
-    <main>
+    <main id="main-content">
+      {/* TODO: do zastapienia sekcją */}
+      <h1 className="sr-only">{rich("home_h1")}</h1>
+
       <SectionSpacer />
 
       <QuoteSection quotes={quotesFirst} />
@@ -22,8 +28,6 @@ export default function Home() {
       <SectionSpacer />
 
       <QuoteSection quotes={quotesSecond} />
-
-      <SectionSpacer />
     </main>
   );
 }

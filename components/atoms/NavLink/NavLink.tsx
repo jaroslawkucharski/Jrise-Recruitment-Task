@@ -17,7 +17,7 @@ export function NavLink({
   return (
     <Link
       className={clsx(
-        "text-neutral-300 transition-colors hover:text-brand-green active:text-brand-green",
+        "text-neutral-300 transition-colors hover:text-brand-green active:text-brand-green focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-hover",
         isActive && "text-brand-green",
         className,
       )}

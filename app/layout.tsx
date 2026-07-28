@@ -14,20 +14,36 @@ const inter = Inter({
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
+  const siteUrl = new URL("https://postprodukcjadzwieku.pl");
 
   return {
+    metadataBase: siteUrl,
     title: t("meta_title"),
     description: t("meta_description"),
+    alternates: {
+      canonical: "/",
+    },
     openGraph: {
       title: t("meta_title"),
       description: t("meta_description"),
       type: "website",
       locale: "pl_PL",
+      url: "/",
+      siteName: t("meta_title"),
+      images: [
+        {
+          url: "/section_01_01_color.webp",
+          width: 1160,
+          height: 676,
+          alt: t("meta_title"),
+        },
+      ],
     },
     twitter: {
       card: "summary_large_image",
       title: t("meta_title"),
       description: t("meta_description"),
+      images: ["/section_01_01_color.webp"],
     },
   };
 }
@@ -44,6 +60,13 @@ export default async function RootLayout({
     <html lang={locale} className={`${inter.variable}`}>
       <body className="min-h-screen bg-neutral-hover text-neutral-0">
         <NextIntlClientProvider locale={locale} messages={messages}>
+          <a
+            href="#main-content"
+            className="sr-only absolute left-4 top-4 z-50 rounded-sm bg-black px-4 py-3 text-white focus:not-sr-only focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          >
+            {messages.skip_to_content}
+          </a>
+
           <Header />
 
           {children}

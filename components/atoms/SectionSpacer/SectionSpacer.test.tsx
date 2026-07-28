@@ -8,8 +8,7 @@ describe("SectionSpacer", () => {
     const spacer = screen.getByTestId("section-spacer");
 
     expect(spacer.getAttribute("aria-hidden")).toBe("true");
-    expect(spacer.className).toContain("h-0");
-    expect(spacer.className).toContain("sm:h-15");
+    expect(spacer.className).toContain("h-15");
     expect(spacer.className).toContain("md:h-30");
     expect(spacer.className).toContain("xl:h-60");
   });

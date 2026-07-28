@@ -10,14 +10,15 @@ import {
   HoverImage,
   type ImageDimensions,
 } from "@/components/atoms/HoverImage/HoverImage";
+import { MessageKey } from "@/i18n/messages";
 import ArrowLeft from "@/public/arrow-left.svg";
 import ArrowRight from "@/public/arrow-right.svg";
 import Rectangle from "@/public/rectangle.svg";
 
 export type SlideTypes = {
-  title?: string;
-  description: string;
-  imageAlt: string;
+  title?: MessageKey;
+  description: MessageKey;
+  imageAlt: MessageKey;
   imageSrc: string;
   imageSrcDimensions: ImageDimensions;
   colorImageSrc: string;
@@ -26,8 +27,8 @@ export type SlideTypes = {
 
 export type SlidesSectionProps = {
   id: string;
-  sectionName: string;
-  ariaLabel: string;
+  sectionName: MessageKey;
+  ariaLabel: MessageKey;
   slides: SlideTypes[];
   boxPadding?: BoxPaddingTypes;
   hasBackground?: boolean;
@@ -67,7 +68,7 @@ export function SlidesSection({
   return (
     <section
       id={id}
-      aria-label={ariaLabel}
+      aria-label={t(ariaLabel)}
       className="mx-auto w-full max-w-300 overflow-hidden bg-black px-4 sm:px-6 md:px-12 xl:px-0"
       data-testid="slides-section"
     >

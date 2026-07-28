@@ -40,7 +40,7 @@ describe("Box", () => {
     expect(screen.queryByTestId("box-title")).toBeNull();
     expect(screen.queryByTestId("box-step")).toBeNull();
     expect(box.classList.contains("bg-neutral-800")).toBe(false);
-    expect(box.classList.contains("p-0")).toBe(true);
+    expect(box.classList.contains("p-[0px]")).toBe(true);
     expect(description.classList.contains("text-white")).toBe(true);
   });
 

@@ -1,9 +1,10 @@
 "use client";
 
 import clsx from "clsx";
-import { useTranslations } from "next-intl";
 import { Heading } from "@/components/atoms/Heading/Heading";
 import { Text } from "@/components/atoms/Text/Text";
+import { MessageKey } from "@/i18n/messages";
+import { useAppTranslations } from "@/i18n/translations";
 
 export type BoxPaddingTypes = 0 | 16;
 
@@ -11,10 +12,10 @@ type BoxProps = {
   className?: string;
   contentClassName?: string;
   currentStep?: number;
-  description: string;
+  description: MessageKey;
   hasBackground?: boolean;
   padding?: BoxPaddingTypes;
-  title?: string;
+  title?: MessageKey;
 };
 
 export function Box({
@@ -26,7 +27,7 @@ export function Box({
   padding = 16,
   title,
 }: BoxProps) {
-  const t = useTranslations();
+  const { t, rich } = useAppTranslations();
 
   return (
     <div
@@ -70,7 +71,7 @@ export function Box({
           )}
           data-testid="box-description"
         >
-          {t.rich(description, {
+          {rich(description, {
             highlight: (chunks) => (
               <span
                 className={clsx(
@@ -80,7 +81,6 @@ export function Box({
                 {chunks}
               </span>
             ),
-            p: (chunks) => <p>{chunks}</p>,
           })}
         </div>
       </div>
