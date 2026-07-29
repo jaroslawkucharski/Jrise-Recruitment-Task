@@ -14,7 +14,8 @@ const inter = Inter({
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations();
-  const siteUrl = new URL("https://postprodukcjadzwieku.pl");
+
+  const siteUrl = new URL("https://jrise-recruitment-task.vercel.app");
 
   return {
     metadataBase: siteUrl,
