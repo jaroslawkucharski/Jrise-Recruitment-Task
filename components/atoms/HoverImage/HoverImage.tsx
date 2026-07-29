@@ -13,7 +13,7 @@ type HoverImageProps = {
   hoverSrc?: string;
   sizes?: string;
   className?: string;
-  isLoadingEager?: boolean;
+  preload?: boolean;
 };
 
 export function HoverImage({
@@ -23,10 +23,8 @@ export function HoverImage({
   sizes,
   src,
   srcDimensions,
-  isLoadingEager,
+  preload,
 }: HoverImageProps) {
-  const loading = isLoadingEager ? "eager" : undefined;
-
   return (
     <div
       className={clsx(
@@ -42,7 +40,7 @@ export function HoverImage({
         height={srcDimensions.height}
         className="block w-full transition-opacity duration-300 group-hover:opacity-0"
         sizes={sizes}
-        loading={loading}
+        preload={preload}
         data-testid="hover-image-base"
       />
 
@@ -55,7 +53,7 @@ export function HoverImage({
           height={srcDimensions.height}
           className="absolute inset-0 w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
           sizes={sizes}
-          loading={loading}
+          preload={preload}
           data-testid="hover-image-hover"
         />
       ) : null}

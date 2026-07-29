@@ -14,7 +14,7 @@ export const sectionFirstSlides: SlidesSectionProps = {
       imageSrc: "/section_01_01.webp",
       imageSrcDimensions: { width: 580, height: 338 },
       colorImageSrc: "/section_01_01_color.webp",
-      isImageLoadingEager: true,
+      imagePreload: true,
     },
     {
       description: "section_first_slides_slide_2_description",
@@ -45,7 +45,7 @@ export const sectionSecondSlides: SlidesSectionProps = {
       imageSrc: "/section_02_01.webp",
       imageSrcDimensions: { width: 580, height: 472 },
       colorImageSrc: "/section_02_01_color.webp",
-      isImageLoadingEager: true,
+      imagePreload: true,
     },
     {
       title: "section_second_slides_slide_2_title",

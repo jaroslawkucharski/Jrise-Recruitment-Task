@@ -22,7 +22,7 @@ export type SlideTypes = {
   imageSrc: string;
   imageSrcDimensions: ImageDimensions;
   colorImageSrc: string;
-  isImageLoadingEager?: boolean;
+  imagePreload?: boolean;
 };
 
 export type SlidesSectionProps = {
@@ -80,7 +80,7 @@ export function SlidesSection({
           hoverSrc={activeSlide.colorImageSrc}
           sizes="(min-width: 1024px) 580px, 100%"
           className={clsx(reverse && "lg:order-2")}
-          isLoadingEager={activeSlide.isImageLoadingEager}
+          preload={activeSlide.imagePreload}
         />
 
         <div

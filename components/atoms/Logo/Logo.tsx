@@ -11,7 +11,7 @@ export function Logo() {
       alt={t("meta_title")}
       width={89}
       height={40}
-      loading="eager"
+      preload
       data-testid="logo"
     />
   );

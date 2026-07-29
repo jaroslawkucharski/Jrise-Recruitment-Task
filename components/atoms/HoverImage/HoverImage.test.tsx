@@ -10,15 +10,12 @@ describe("HoverImage", () => {
         srcDimensions={{ width: 1160, height: 944 }}
         hoverSrc="/hover.webp"
         sizes="100vw"
-        isLoadingEager
+        preload
       />,
     );
 
     expect(screen.getByTestId("hover-image")).toBeDefined();
     expect(screen.getByAltText("Opis obrazka")).toBeDefined();
-    expect(screen.getByTestId("hover-image-base").getAttribute("loading")).toBe(
-      "eager",
-    );
     expect(
       decodeURIComponent(
         screen.getByTestId("hover-image-hover").getAttribute("src") ?? "",
