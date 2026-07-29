@@ -1,7 +1,6 @@
 "use client";
 
 import clsx from "clsx";
-import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Button } from "@/components/atoms/Button/Button";
 import { Box, BoxPaddingTypes } from "@/components/atoms/Box/Box";
@@ -11,6 +10,7 @@ import {
   type ImageDimensions,
 } from "@/components/atoms/HoverImage/HoverImage";
 import { MessageKey } from "@/i18n/messages";
+import { useAppTranslations } from "@/i18n/translations";
 import ArrowLeft from "@/public/arrow-left.svg";
 import ArrowRight from "@/public/arrow-right.svg";
 import Rectangle from "@/public/rectangle.svg";
@@ -44,7 +44,7 @@ export function SlidesSection({
   hasBackground = true,
   reverse = false,
 }: SlidesSectionProps) {
-  const t = useTranslations();
+  const { t } = useAppTranslations();
 
   const [activeIndex, setActiveIndex] = useState(0);
 

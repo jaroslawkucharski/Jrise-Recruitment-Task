@@ -1,12 +1,11 @@
 import { Logo } from "@/components/atoms/Logo/Logo";
 import { Navigation } from "@/components/molecules/Navigation/Navigation";
 import { navigationItems } from "@/data/navigation";
-import { useTranslations } from "next-intl";
-
+import { getAppTranslations } from "@/i18n/translations";
 import Link from "next/link";
 
-export function Header() {
-  const t = useTranslations();
+export async function Header() {
+  const { t } = await getAppTranslations();
 
   return (
     <header className="sticky top-0 z-10 w-full bg-neutral-hover/70 shadow-xl/30 backdrop-blur-md">

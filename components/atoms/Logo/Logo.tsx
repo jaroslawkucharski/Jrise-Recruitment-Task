@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { getAppTranslations } from "@/i18n/translations";
 import LogoSrc from "@/public/logo.png";
 
-export function Logo() {
-  const t = useTranslations();
+export async function Logo() {
+  const { t } = await getAppTranslations();
 
   return (
     <Image

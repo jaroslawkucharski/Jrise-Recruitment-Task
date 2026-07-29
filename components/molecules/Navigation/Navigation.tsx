@@ -1,7 +1,7 @@
 import { NavLink } from "@/components/atoms/NavLink/NavLink";
 import { LinkButton } from "@/components/atoms/Button/LinkButton";
-import { useTranslations } from "next-intl";
 import { MessageKey } from "@/i18n/messages";
+import { getAppTranslations } from "@/i18n/translations";
 
 export type NavigationItem = {
   href: string;
@@ -13,8 +13,8 @@ type NavMenuProps = {
   items: NavigationItem[];
 };
 
-export function Navigation({ items }: NavMenuProps) {
-  const t = useTranslations();
+export async function Navigation({ items }: NavMenuProps) {
+  const { t } = await getAppTranslations();
 
   return (
     <nav
