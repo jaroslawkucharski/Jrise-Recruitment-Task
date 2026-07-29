@@ -7,12 +7,12 @@ type WeightTypes = 400 | 500 | 600 | 700;
 type HeadingProps = {
   children: ReactNode;
   className?: string;
-  level: LevelTypes;
+  level?: LevelTypes;
   weight?: WeightTypes;
 } & Omit<ComponentPropsWithoutRef<"h1">, "children" | "className">;
 
 const sizeClassNames: Record<LevelTypes, string> = {
-  h1: "text-[38px]",
+  h1: "text-[64px]",
   h2: "text-[32px]",
   h3: "text-[28px]",
   h4: "text-[24px]",
