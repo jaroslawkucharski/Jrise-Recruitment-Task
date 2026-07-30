@@ -59,4 +59,18 @@ describe("Box", () => {
     expect(paragraphs).toHaveLength(2);
     expect(description.className).toContain("[&_p+p]:mt-6");
   });
+
+  it("renders a title without the step indicator when currentStep is missing", () => {
+    renderWithIntl(
+      <Box
+        titleKey="section_second_slides_slide_2_title"
+        descriptionKey="section_second_slides_slide_2_description"
+      />,
+    );
+
+    expect(screen.getByTestId("box-title").textContent).toBe(
+      t("section_second_slides_slide_2_title"),
+    );
+    expect(screen.queryByTestId("box-step")).toBeNull();
+  });
 });

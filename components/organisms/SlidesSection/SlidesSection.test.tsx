@@ -21,7 +21,9 @@ describe("SlidesSection", () => {
     renderWithIntl(<SlidesSection {...sectionSecondSlides} />);
 
     expect(
-      screen.getByRole("heading", { name: t(sectionSecondSlides.sectionNameKey) }),
+      screen.getByRole("heading", {
+        name: t(sectionSecondSlides.sectionNameKey),
+      }),
     ).toBeDefined();
     expect(screen.getByTestId("box-title").textContent).toBe(
       t("section_second_slides_slide_1_title"),
@@ -55,9 +57,57 @@ describe("SlidesSection", () => {
       t("section_second_slides_slide_5_title"),
     );
     expect(nextButton.hasAttribute("disabled")).toBe(true);
-    expect(screen.getByTestId("slides-prev-button").hasAttribute("disabled")).toBe(
-      false,
+    expect(
+      screen.getByTestId("slides-prev-button").hasAttribute("disabled"),
+    ).toBe(false);
+  });
+
+  it("can navigate back to the previous slide", () => {
+    renderWithIntl(<SlidesSection {...sectionSecondSlides} />);
+
+    const previousButton = screen.getByTestId("slides-prev-button");
+    const nextButton = screen.getByTestId("slides-next-button");
+
+    fireEvent.click(nextButton);
+    fireEvent.click(previousButton);
+
+    expect(screen.getByTestId("box-title").textContent).toBe(
+      t("section_second_slides_slide_1_title"),
     );
+    expect(screen.getByTestId("box-step").textContent).toBe("01");
+    expect(previousButton.hasAttribute("disabled")).toBe(true);
+  });
+
+  it("keeps the first slide when the previous handler runs in the disabled state", () => {
+    renderWithIntl(<SlidesSection {...sectionSecondSlides} />);
+
+    const previousButton = screen.getByTestId("slides-prev-button");
+
+    previousButton.removeAttribute("disabled");
+    fireEvent.click(previousButton);
+
+    expect(screen.getByTestId("box-title").textContent).toBe(
+      t("section_second_slides_slide_1_title"),
+    );
+    expect(screen.getByTestId("box-step").textContent).toBe("01");
+  });
+
+  it("keeps the last slide when the next handler runs in the disabled state", () => {
+    renderWithIntl(<SlidesSection {...sectionSecondSlides} />);
+
+    const nextButton = screen.getByTestId("slides-next-button");
+
+    for (let index = 1; index < sectionSecondSlides.slides.length; index += 1) {
+      fireEvent.click(nextButton);
+    }
+
+    nextButton.removeAttribute("disabled");
+    fireEvent.click(nextButton);
+
+    expect(screen.getByTestId("box-title").textContent).toBe(
+      t("section_second_slides_slide_5_title"),
+    );
+    expect(screen.getByTestId("box-step").textContent).toBe("05");
   });
 
   it("exposes accessible labels for navigation controls", () => {
@@ -83,8 +133,8 @@ describe("SlidesSection", () => {
     renderWithIntl(<SlidesSection {...sectionSecondSlides} reverse />);
 
     expect(screen.getByTestId("hover-image").className).toContain("lg:order-2");
-    expect(screen.getByTestId("hover-image").nextElementSibling?.className).toContain(
-      "lg:order-1",
-    );
+    expect(
+      screen.getByTestId("hover-image").nextElementSibling?.className,
+    ).toContain("lg:order-1");
   });
 });
