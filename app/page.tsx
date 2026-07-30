@@ -1,7 +1,9 @@
 import { HeroSection } from "@/components/organisms/HeroSection/HeroSection";
+import { ImagesSection } from "@/components/organisms/ImagesSection/ImagesSection";
 import { SectionSpacer } from "@/components/atoms/SectionSpacer/SectionSpacer";
 import { SlidesSection } from "@/components/organisms/SlidesSection/SlidesSection";
 import { QuoteSection } from "@/components/organisms/QuoteSection/QuoteSection";
+import { imagesSectionData } from "@/data/images";
 import {
   sectionFirstSlides,
   sectionSecondSlides,
@@ -13,6 +15,8 @@ export default function Home() {
   return (
     <main id="main-content">
       <HeroSection />
+
+      <ImagesSection {...imagesSectionData} />
 
       <SectionSpacer />
 
