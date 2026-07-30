@@ -25,9 +25,9 @@ describe("Navigation", () => {
   it("renders all navigation links and CTA", async () => {
     renderWithIntl(await Navigation({ items: navigationItems }));
 
-    navigationItems.forEach(({ hrefKey, label }) => {
+    navigationItems.forEach(({ hrefKey, labelKey }) => {
       expect(
-        screen.getByRole("link", { name: t(label) }).getAttribute("href"),
+        screen.getByRole("link", { name: t(labelKey) }).getAttribute("href"),
       ).toBe(getAnchorHref(t(hrefKey)));
     });
   });

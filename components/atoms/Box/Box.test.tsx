@@ -7,8 +7,8 @@ describe("Box", () => {
     renderWithIntl(
       <Box
         currentStep={3}
-        title="section_second_slides_slide_1_title"
-        description="section_second_slides_slide_1_description"
+        titleKey="section_second_slides_slide_1_title"
+        descriptionKey="section_second_slides_slide_1_description"
       />,
     );
 
@@ -28,7 +28,7 @@ describe("Box", () => {
   it("can render without title and without background padding", () => {
     renderWithIntl(
       <Box
-        description="section_second_slides_slide_2_description"
+        descriptionKey="section_second_slides_slide_2_description"
         hasBackground={false}
         padding={0}
       />,
@@ -47,7 +47,7 @@ describe("Box", () => {
   it("renders description paragraphs with spacing between them", () => {
     renderWithIntl(
       <Box
-        description="section_first_slides_slide_1_description"
+        descriptionKey="section_first_slides_slide_1_description"
         hasBackground={false}
         padding={0}
       />,

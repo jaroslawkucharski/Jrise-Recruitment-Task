@@ -6,7 +6,7 @@ import { getAnchorHref } from "@/utils/getAnchorHref";
 
 export type NavigationItem = {
   hrefKey: MessageKey;
-  label: MessageKey;
+  labelKey: MessageKey;
   linkButton?: boolean;
 };
 
@@ -23,17 +23,17 @@ export async function Navigation({ items }: NavMenuProps) {
       className="hidden items-center md:flex"
     >
       <ul className="flex w-full items-center justify-end gap-6">
-        {items.map(({ hrefKey, label, linkButton }) => {
+        {items.map(({ hrefKey, labelKey, linkButton }) => {
           const href = getAnchorHref(t(hrefKey));
 
           return (
             <li key={hrefKey}>
               {linkButton ? (
                 <LinkButton href={href} size={14}>
-                  {t(label)}
+                  {t(labelKey)}
                 </LinkButton>
               ) : (
-                <NavLink href={href}>{t(label)}</NavLink>
+                <NavLink href={href}>{t(labelKey)}</NavLink>
               )}
             </li>
           );

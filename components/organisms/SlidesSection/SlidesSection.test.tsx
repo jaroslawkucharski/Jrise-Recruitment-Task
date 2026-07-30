@@ -21,7 +21,7 @@ describe("SlidesSection", () => {
     renderWithIntl(<SlidesSection {...sectionSecondSlides} />);
 
     expect(
-      screen.getByRole("heading", { name: t(sectionSecondSlides.sectionName) }),
+      screen.getByRole("heading", { name: t(sectionSecondSlides.sectionNameKey) }),
     ).toBeDefined();
     expect(screen.getByTestId("box-title").textContent).toBe(
       t("section_second_slides_slide_1_title"),
@@ -75,7 +75,7 @@ describe("SlidesSection", () => {
     renderWithIntl(<SlidesSection {...sectionSecondSlides} />);
 
     expect(screen.getByTestId("slides-section").getAttribute("id")).toBe(
-      t("anchor_process"),
+      t(sectionSecondSlides.idKey),
     );
   });
 

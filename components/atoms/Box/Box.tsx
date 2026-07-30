@@ -13,20 +13,20 @@ type BoxProps = {
   className?: string;
   contentClassName?: string;
   currentStep?: number;
-  description: MessageKey;
+  descriptionKey: MessageKey;
   hasBackground?: boolean;
   padding?: BoxPaddingTypes;
-  title?: MessageKey;
+  titleKey?: MessageKey;
 };
 
 export function Box({
   className,
   contentClassName,
   currentStep,
-  description,
+  descriptionKey,
   hasBackground = true,
   padding = 16,
-  title,
+  titleKey,
 }: BoxProps) {
   const t = useAppTranslations();
 
@@ -41,11 +41,11 @@ export function Box({
       data-testid="box"
     >
       <div className={clsx("space-y-5", contentClassName)}>
-        {title ? (
+        {titleKey ? (
           <>
             <div className="flex items-center justify-between gap-4">
               <Heading level="h5" weight={500} data-testid="box-title">
-                <RevealText>{t(title)}</RevealText>
+                <RevealText>{t(titleKey)}</RevealText>
               </Heading>
 
               {currentStep ? (
@@ -73,7 +73,7 @@ export function Box({
           )}
           data-testid="box-description"
         >
-          {t(description)}
+          {t(descriptionKey)}
         </RevealText>
       </div>
     </div>

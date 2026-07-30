@@ -2,7 +2,7 @@ import { type ImagesSectionProps } from "@/components/organisms/ImagesSection/Im
 
 export const imagesSectionData: ImagesSectionProps = {
   idKey: "anchor_beforeAfter",
-  ariaLabel: "images_section_aria",
+  ariaLabelKey: "images_section_aria",
   primaryColumn: [
     {
       src: "/img_01.webp",

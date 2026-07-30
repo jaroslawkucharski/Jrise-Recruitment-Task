@@ -17,9 +17,9 @@ import ArrowRight from "@/public/arrow-right.svg";
 import Rectangle from "@/public/rectangle.svg";
 
 export type SlideTypes = {
-  title?: MessageKey;
-  description: MessageKey;
-  imageAlt: MessageKey;
+  titleKey?: MessageKey;
+  descriptionKey: MessageKey;
+  imageAltKey: MessageKey;
   imageSrc: string;
   imageSrcDimensions: ImageDimensions;
   colorImageSrc: string;
@@ -27,9 +27,9 @@ export type SlideTypes = {
 };
 
 export type SlidesSectionProps = {
-  id: MessageKey;
-  sectionName: MessageKey;
-  ariaLabel: MessageKey;
+  idKey: MessageKey;
+  sectionNameKey: MessageKey;
+  ariaLabelKey: MessageKey;
   slides: SlideTypes[];
   boxPadding?: BoxPaddingTypes;
   hasBackground?: boolean;
@@ -37,9 +37,9 @@ export type SlidesSectionProps = {
 };
 
 export function SlidesSection({
-  ariaLabel,
-  id,
-  sectionName,
+  ariaLabelKey,
+  idKey,
+  sectionNameKey,
   slides,
   boxPadding,
   hasBackground = true,
@@ -68,14 +68,14 @@ export function SlidesSection({
 
   return (
     <section
-      id={t(id)}
-      aria-label={t(ariaLabel)}
+      id={t(idKey)}
+      aria-label={t(ariaLabelKey)}
       className="mx-auto w-full max-w-300 overflow-hidden bg-black px-4 sm:px-6 md:px-12 xl:px-0"
       data-testid="slides-section"
     >
       <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,580px)_minmax(0,1fr)] lg:gap-10">
         <HoverImage
-          alt={t(activeSlide.imageAlt)}
+          alt={t(activeSlide.imageAltKey)}
           src={activeSlide.imageSrc}
           srcDimensions={activeSlide.imageSrcDimensions}
           hoverSrc={activeSlide.colorImageSrc}
@@ -95,14 +95,14 @@ export function SlidesSection({
               <Rectangle aria-hidden="true" />
 
               <Heading level="h4" weight={500}>
-                <RevealText>{t(sectionName)}</RevealText>
+                <RevealText>{t(sectionNameKey)}</RevealText>
               </Heading>
             </div>
 
             <Box
               currentStep={activeIndex + 1}
-              title={activeSlide.title}
-              description={activeSlide.description}
+              titleKey={activeSlide.titleKey}
+              descriptionKey={activeSlide.descriptionKey}
               padding={boxPadding}
               hasBackground={hasBackground}
             />
