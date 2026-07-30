@@ -11,9 +11,9 @@ import { MessageKey } from "@/i18n/messages";
 type RichValueRenderer = (chunks?: ReactNode) => ReactNode;
 
 export type AppRichValues = Record<string, RichValueRenderer>;
-type AppTranslator = ReturnType<typeof useTranslations> & {
-  rich: (key: MessageKey, values?: AppRichValues) => ReactNode;
-};
+export type AppTranslationValues = Record<string, unknown>;
+type BaseTranslator = ReturnType<typeof useTranslations>;
+type AppTranslator = BaseTranslator;
 
 function getDefaultRichValues(): AppRichValues {
   return {
@@ -32,11 +32,15 @@ function mergeRichValues(values: AppRichValues = {}) {
 }
 
 function withDefaultRichValues(
-  translator: ReturnType<typeof useTranslations>,
+  translator: BaseTranslator,
 ): AppTranslator {
   const rich = translator.rich.bind(translator);
+  const translate = ((
+    key: MessageKey,
+    values?: AppTranslationValues,
+  ) => rich(key, mergeRichValues(values as AppRichValues))) as BaseTranslator;
 
-  return Object.assign(translator, {
+  return Object.assign(translate, translator, {
     rich: (key: MessageKey, values?: AppRichValues) =>
       rich(key, mergeRichValues(values)),
   }) as AppTranslator;

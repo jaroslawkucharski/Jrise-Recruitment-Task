@@ -107,7 +107,7 @@ export function QuoteSection({ quotes }: QuoteSectionProps) {
                     `}
                   >
                     <p className="ml-30 text-[32px] font-medium text-white lg:ml-60 lg:text-[48px]">
-                      {t.rich(quote)}
+                      {t(quote)}
                     </p>
                   </div>
                 </article>

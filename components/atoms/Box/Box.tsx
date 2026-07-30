@@ -71,7 +71,7 @@ export function Box({
           )}
           data-testid="box-description"
         >
-          {t.rich(description)}
+          {t(description)}
         </div>
       </div>
     </div>

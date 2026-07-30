@@ -31,12 +31,10 @@ export async function HeroSection() {
       <div className="relative flex w-full items-center justify-center px-6">
         <div className="flex w-full max-w-5xl flex-col items-center justify-center gap-25 text-center">
           <div className="flex w-full max-w-2xl flex-col items-center gap-6">
-            <Heading className="leading-[114%]">
-              {t.rich("home_heading")}
-            </Heading>
+            <Heading className="leading-[114%]">{t("home_heading")}</Heading>
 
             <Heading level="h5" className="leading-[120%]">
-              {t.rich("home_description")}
+              {t("home_description")}
             </Heading>
 
             <LinkButton variant="secondary" href="#porozmawiajmy">
