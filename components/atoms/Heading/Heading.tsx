@@ -12,12 +12,12 @@ type HeadingProps = {
 } & Omit<ComponentPropsWithoutRef<"h1">, "children" | "className">;
 
 const sizeClassNames: Record<LevelTypes, string> = {
-  h1: "text-[64px]",
-  h2: "text-[32px]",
-  h3: "text-[28px]",
-  h4: "text-[24px]",
-  h5: "text-[21px]",
-  h6: "text-[18px]",
+  h1: "text-[42px] sm:text-[52px] lg:text-[64px]",
+  h2: "text-[28px] sm:text-[30px] lg:text-[32px]",
+  h3: "text-[24px] sm:text-[26px] lg:text-[28px]",
+  h4: "text-[20px] sm:text-[22px] lg:text-[24px]",
+  h5: "text-[18px] sm:text-[19px] lg:text-[21px]",
+  h6: "text-[16px] sm:text-[17px] lg:text-[18px]",
 };
 
 const weightClassNames: Record<WeightTypes, string> = {
