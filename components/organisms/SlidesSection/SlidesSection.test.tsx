@@ -71,6 +71,14 @@ describe("SlidesSection", () => {
     ).toBeDefined();
   });
 
+  it("uses the translated anchor slug as the section id", () => {
+    renderWithIntl(<SlidesSection {...sectionSecondSlides} />);
+
+    expect(screen.getByTestId("slides-section").getAttribute("id")).toBe(
+      t("anchor_process"),
+    );
+  });
+
   it("can reverse desktop column order so the image is rendered second", () => {
     renderWithIntl(<SlidesSection {...sectionSecondSlides} reverse />);
 
