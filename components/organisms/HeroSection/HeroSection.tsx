@@ -1,9 +1,9 @@
 import Image from "next/image";
 import HeroImage from "@/public/hero.webp";
 import Logo01 from "@/public/logo_01.webp";
-import Logo02 from "@/public/logo_02.webp";
+import Logo02 from "@/public/logo_02.png";
 import Logo03 from "@/public/logo_03.webp";
-import Logo04 from "@/public/logo_04.webp";
+import Logo04 from "@/public/logo_04.png";
 import Logo05 from "@/public/logo_05.webp";
 import { Heading } from "@/components/atoms/Heading/Heading";
 import { getAppTranslations } from "@/i18n/translations";
