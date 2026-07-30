@@ -11,7 +11,7 @@ describe("ImagesSection", () => {
       t("anchor_beforeAfter"),
     );
     expect(
-      screen.getByRole("region", { name: t("header_nav_beforeAfter") }),
+      screen.getByRole("region", { name: t("images_section_aria") }),
     ).toBeDefined();
     expect(screen.getAllByTestId("hover-image")).toHaveLength(11);
   });
