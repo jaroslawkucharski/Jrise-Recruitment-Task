@@ -1,9 +1,9 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { getAppTranslations } from "@/i18n/translations";
 import LogoSrc from "@/public/logo.png";
 
-export function Logo() {
-  const t = useTranslations();
+export async function Logo() {
+  const t = await getAppTranslations();
 
   return (
     <Image
@@ -11,7 +11,7 @@ export function Logo() {
       alt={t("meta_title")}
       width={89}
       height={40}
-      loading="eager"
+      preload
       data-testid="logo"
     />
   );

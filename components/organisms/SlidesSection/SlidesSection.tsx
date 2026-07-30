@@ -1,7 +1,6 @@
 "use client";
 
 import clsx from "clsx";
-import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { Button } from "@/components/atoms/Button/Button";
 import { Box, BoxPaddingTypes } from "@/components/atoms/Box/Box";
@@ -11,6 +10,7 @@ import {
   type ImageDimensions,
 } from "@/components/atoms/HoverImage/HoverImage";
 import { MessageKey } from "@/i18n/messages";
+import { useAppTranslations } from "@/i18n/translations";
 import ArrowLeft from "@/public/arrow-left.svg";
 import ArrowRight from "@/public/arrow-right.svg";
 import Rectangle from "@/public/rectangle.svg";
@@ -22,7 +22,7 @@ export type SlideTypes = {
   imageSrc: string;
   imageSrcDimensions: ImageDimensions;
   colorImageSrc: string;
-  isImageLoadingEager?: boolean;
+  imagePreload?: boolean;
 };
 
 export type SlidesSectionProps = {
@@ -44,7 +44,7 @@ export function SlidesSection({
   hasBackground = true,
   reverse = false,
 }: SlidesSectionProps) {
-  const t = useTranslations();
+  const t = useAppTranslations();
 
   const [activeIndex, setActiveIndex] = useState(0);
 
@@ -80,7 +80,7 @@ export function SlidesSection({
           hoverSrc={activeSlide.colorImageSrc}
           sizes="(min-width: 1024px) 580px, 100%"
           className={clsx(reverse && "lg:order-2")}
-          isLoadingEager={activeSlide.isImageLoadingEager}
+          preload={activeSlide.imagePreload}
         />
 
         <div

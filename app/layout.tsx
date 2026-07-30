@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { NextIntlClientProvider } from "next-intl";
-import { getLocale, getMessages, getTranslations } from "next-intl/server";
+import { getLocale, getMessages } from "next-intl/server";
 import "./globals.css";
 import { Header } from "@/components/organisms/Header/Header";
+import { AppIntlProvider, getAppTranslations } from "@/i18n/translations";
 
 const inter = Inter({
   variable: "--font-body",
@@ -13,8 +13,9 @@ const inter = Inter({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const t = await getTranslations();
-  const siteUrl = new URL("https://postprodukcjadzwieku.pl");
+  const t = await getAppTranslations();
+
+  const siteUrl = new URL("https://jrise-recruitment-task.vercel.app");
 
   return {
     metadataBase: siteUrl,
@@ -59,11 +60,11 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={`${inter.variable}`}>
       <body className="min-h-screen bg-neutral-hover text-neutral-0">
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <AppIntlProvider locale={locale} messages={messages}>
           <Header />
 
           {children}
-        </NextIntlClientProvider>
+        </AppIntlProvider>
       </body>
     </html>
   );
