@@ -12,10 +12,7 @@ const translator = createTranslator({
 });
 
 vi.mock("@/i18n/translations", () => ({
-  getAppTranslations: async () => ({
-    t: translator,
-    rich: translator.rich,
-  }),
+  getAppTranslations: async () => translator,
 }));
 
 vi.mock("@/components/atoms/Logo/Logo", () => ({

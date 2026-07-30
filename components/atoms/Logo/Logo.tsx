@@ -3,7 +3,7 @@ import { getAppTranslations } from "@/i18n/translations";
 import LogoSrc from "@/public/logo.png";
 
 export async function Logo() {
-  const { t } = await getAppTranslations();
+  const t = await getAppTranslations();
 
   return (
     <Image

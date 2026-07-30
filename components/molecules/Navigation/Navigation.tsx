@@ -14,7 +14,7 @@ type NavMenuProps = {
 };
 
 export async function Navigation({ items }: NavMenuProps) {
-  const { t } = await getAppTranslations();
+  const t = await getAppTranslations();
 
   return (
     <nav

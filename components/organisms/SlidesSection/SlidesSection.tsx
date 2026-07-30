@@ -44,7 +44,7 @@ export function SlidesSection({
   hasBackground = true,
   reverse = false,
 }: SlidesSectionProps) {
-  const { t } = useAppTranslations();
+  const t = useAppTranslations();
 
   const [activeIndex, setActiveIndex] = useState(0);
 

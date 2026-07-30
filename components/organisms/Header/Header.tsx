@@ -5,7 +5,7 @@ import { getAppTranslations } from "@/i18n/translations";
 import Link from "next/link";
 
 export async function Header() {
-  const { t } = await getAppTranslations();
+  const t = await getAppTranslations();
 
   return (
     <header className="sticky top-0 z-10 w-full bg-neutral-hover/70 shadow-xl/30 backdrop-blur-md">

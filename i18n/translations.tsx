@@ -6,11 +6,16 @@ import { MessageKey } from "@/i18n/messages";
 type RichValueRenderer = (chunks?: ReactNode) => ReactNode;
 
 export type AppRichValues = Record<string, RichValueRenderer>;
+type AppTranslator = ReturnType<typeof useTranslations> & {
+  rich: (key: MessageKey, values?: AppRichValues) => ReactNode;
+};
 
 function getDefaultRichValues(): AppRichValues {
   return {
     br: () => <br />,
     p: (chunks) => <p>{chunks}</p>,
+    green: (chunks) => <span className="text-brand-green">{chunks}</span>,
+    white: (chunks) => <span className="text-neutral-0">{chunks}</span>,
   };
 }
 
@@ -21,22 +26,21 @@ function mergeRichValues(values: AppRichValues = {}) {
   };
 }
 
-export function useAppTranslations() {
-  const t = useTranslations();
+function withDefaultRichValues(
+  translator: ReturnType<typeof useTranslations>,
+): AppTranslator {
+  const rich = translator.rich.bind(translator);
 
-  return {
-    t,
+  return Object.assign(translator, {
     rich: (key: MessageKey, values?: AppRichValues) =>
-      t.rich(key, mergeRichValues(values)),
-  };
+      rich(key, mergeRichValues(values)),
+  }) as AppTranslator;
+}
+
+export function useAppTranslations() {
+  return withDefaultRichValues(useTranslations());
 }
 
 export async function getAppTranslations() {
-  const t = await getTranslations();
-
-  return {
-    t,
-    rich: (key: MessageKey, values?: AppRichValues) =>
-      t.rich(key, mergeRichValues(values)),
-  };
+  return withDefaultRichValues(await getTranslations());
 }

@@ -12,7 +12,7 @@ type QuoteSectionProps = {
 };
 
 export function QuoteSection({ quotes }: QuoteSectionProps) {
-  const { t, rich } = useAppTranslations();
+  const t = useAppTranslations();
 
   const repeatedQuotes = useMemo(() => [...quotes, ...quotes], [quotes]);
 
@@ -107,11 +107,7 @@ export function QuoteSection({ quotes }: QuoteSectionProps) {
                     `}
                   >
                     <p className="ml-30 text-[32px] font-medium text-white lg:ml-60 lg:text-[48px]">
-                      {rich(quote, {
-                        text: (chunk) => (
-                          <span className="text-brand-green">{chunk}</span>
-                        ),
-                      })}
+                      {t.rich(quote)}
                     </p>
                   </div>
                 </article>

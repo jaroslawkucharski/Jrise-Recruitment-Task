@@ -27,7 +27,7 @@ export function Box({
   padding = 16,
   title,
 }: BoxProps) {
-  const { t, rich } = useAppTranslations();
+  const t = useAppTranslations();
 
   return (
     <div
@@ -71,17 +71,7 @@ export function Box({
           )}
           data-testid="box-description"
         >
-          {rich(description, {
-            highlight: (chunks) => (
-              <span
-                className={clsx(
-                  hasBackground ? "text-neutral-0" : "text-brand-green",
-                )}
-              >
-                {chunks}
-              </span>
-            ),
-          })}
+          {t.rich(description)}
         </div>
       </div>
     </div>
