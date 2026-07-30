@@ -1,14 +1,22 @@
 import { HeroSection } from "@/components/organisms/HeroSection/HeroSection";
+import { ImagesSection } from "@/components/organisms/ImagesSection/ImagesSection";
 import { SectionSpacer } from "@/components/atoms/SectionSpacer/SectionSpacer";
 import { SlidesSection } from "@/components/organisms/SlidesSection/SlidesSection";
 import { QuoteSection } from "@/components/organisms/QuoteSection/QuoteSection";
-import { sectionFirstSlides, sectionSecondSlides } from "@/data/slides";
+import { imagesSectionData } from "@/data/images";
+import {
+  sectionFirstSlides,
+  sectionSecondSlides,
+  sectionThirdSlides,
+} from "@/data/slides";
 import { quotesFirst, quotesSecond } from "@/data/quotes";
 
 export default function Home() {
   return (
     <main id="main-content">
       <HeroSection />
+
+      <ImagesSection {...imagesSectionData} />
 
       <SectionSpacer />
 
@@ -25,6 +33,12 @@ export default function Home() {
       <SectionSpacer />
 
       <QuoteSection quotes={quotesSecond} />
+
+      <SectionSpacer />
+
+      <SlidesSection {...sectionThirdSlides} />
+
+      <SectionSpacer />
     </main>
   );
 }

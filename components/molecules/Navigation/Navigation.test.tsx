@@ -3,6 +3,7 @@ import { Navigation } from "./Navigation";
 import { navigationItems } from "@/data/navigation";
 import { messages } from "@/i18n/messages";
 import { createAppTranslator } from "@/i18n/translations";
+import { getAnchorHref } from "@/utils/getAnchorHref";
 import { renderWithIntl, t } from "@/utils/renderWithIntl";
 import { vi } from "vitest";
 
@@ -24,10 +25,10 @@ describe("Navigation", () => {
   it("renders all navigation links and CTA", async () => {
     renderWithIntl(await Navigation({ items: navigationItems }));
 
-    navigationItems.forEach(({ href, label }) => {
+    navigationItems.forEach(({ hrefKey, labelKey }) => {
       expect(
-        screen.getByRole("link", { name: t(label) }).getAttribute("href"),
-      ).toBe(href);
+        screen.getByRole("link", { name: t(labelKey) }).getAttribute("href"),
+      ).toBe(getAnchorHref(t(hrefKey)));
     });
   });
 

@@ -1,10 +1,9 @@
 import { NavigationItem } from "@/components/molecules/Navigation/Navigation";
 
 export const navigationItems: NavigationItem[] = [
-  { href: "#kimjestem", label: "header_nav_about" },
-  { href: "#jakpracuje", label: "header_nav_process" },
-  { href: "#corobie", label: "header_nav_services" },
-  { href: "#mix51", label: "header_nav_mix51" },
-  { href: "#przedipo", label: "header_nav_beforeAfter" },
-  { href: "#porozmawiajmy", label: "header_nav_contact", linkButton: true },
+  { hrefKey: "anchor_about", labelKey: "header_nav_about" },
+  { hrefKey: "anchor_process", labelKey: "header_nav_process" },
+  { hrefKey: "anchor_services", labelKey: "header_nav_services" },
+  { hrefKey: "anchor_beforeAfter", labelKey: "header_nav_beforeAfter" },
+  { hrefKey: "anchor_contact", labelKey: "header_nav_contact", linkButton: true },
 ];
