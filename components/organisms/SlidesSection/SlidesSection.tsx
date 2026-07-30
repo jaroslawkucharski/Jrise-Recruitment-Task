@@ -9,6 +9,7 @@ import {
   HoverImage,
   type ImageDimensions,
 } from "@/components/atoms/HoverImage/HoverImage";
+import { RevealText } from "@/components/atoms/RevealText/RevealText";
 import { MessageKey } from "@/i18n/messages";
 import { useAppTranslations } from "@/i18n/translations";
 import ArrowLeft from "@/public/arrow-left.svg";
@@ -26,7 +27,7 @@ export type SlideTypes = {
 };
 
 export type SlidesSectionProps = {
-  id: string;
+  id: MessageKey;
   sectionName: MessageKey;
   ariaLabel: MessageKey;
   slides: SlideTypes[];
@@ -67,7 +68,7 @@ export function SlidesSection({
 
   return (
     <section
-      id={id}
+      id={t(id)}
       aria-label={t(ariaLabel)}
       className="mx-auto w-full max-w-300 overflow-hidden bg-black px-4 sm:px-6 md:px-12 xl:px-0"
       data-testid="slides-section"
@@ -94,7 +95,7 @@ export function SlidesSection({
               <Rectangle aria-hidden="true" />
 
               <Heading level="h4" weight={500}>
-                {t(sectionName)}
+                <RevealText>{t(sectionName)}</RevealText>
               </Heading>
             </div>
 

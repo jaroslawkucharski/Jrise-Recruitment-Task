@@ -4,6 +4,7 @@ import AutoScroll from "embla-carousel-auto-scroll";
 
 import useEmblaCarousel from "embla-carousel-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { RevealText } from "@/components/atoms/RevealText/RevealText";
 import { MessageKey } from "@/i18n/messages";
 import { useAppTranslations } from "@/i18n/translations";
 
@@ -107,7 +108,7 @@ export function QuoteSection({ quotes }: QuoteSectionProps) {
                     `}
                   >
                     <p className="ml-30 text-[32px] font-medium text-white lg:ml-60 lg:text-[48px]">
-                      {t(quote)}
+                      <RevealText>{t(quote)}</RevealText>
                     </p>
                   </div>
                 </article>

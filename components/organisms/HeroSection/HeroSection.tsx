@@ -8,6 +8,8 @@ import Logo05 from "@/public/logo_05.webp";
 import { Heading } from "@/components/atoms/Heading/Heading";
 import { getAppTranslations } from "@/i18n/translations";
 import { LinkButton } from "@/components/atoms/Button/LinkButton";
+import { RevealText } from "@/components/atoms/RevealText/RevealText";
+import { getAnchorHref } from "@/utils/getAnchorHref";
 
 export async function HeroSection() {
   const t = await getAppTranslations();
@@ -19,6 +21,8 @@ export async function HeroSection() {
         alt=""
         fill
         preload
+        placeholder="blur"
+        quality={70}
         sizes="100vw"
         className="object-cover object-center"
       />
@@ -31,14 +35,19 @@ export async function HeroSection() {
       <div className="relative flex w-full items-center justify-center px-6">
         <div className="flex w-full max-w-5xl flex-col items-center justify-center gap-25 text-center">
           <div className="flex w-full max-w-2xl flex-col items-center gap-6">
-            <Heading className="leading-[114%]">{t("home_heading")}</Heading>
-
-            <Heading level="h5" className="leading-[120%]">
-              {t("home_description")}
+            <Heading className="leading-[114%]">
+              <RevealText>{t("home_heading")}</RevealText>
             </Heading>
 
-            <LinkButton variant="secondary" href="#porozmawiajmy">
-              {t("home_button")}
+            <Heading level="h5" className="leading-[120%]">
+              <RevealText>{t("home_description")}</RevealText>
+            </Heading>
+
+            <LinkButton
+              variant="secondary"
+              href={getAnchorHref(t("anchor_contact"))}
+            >
+              <RevealText>{t("home_button")}</RevealText>
             </LinkButton>
           </div>
 
