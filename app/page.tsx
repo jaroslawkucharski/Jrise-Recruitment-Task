@@ -2,7 +2,11 @@ import { HeroSection } from "@/components/organisms/HeroSection/HeroSection";
 import { SectionSpacer } from "@/components/atoms/SectionSpacer/SectionSpacer";
 import { SlidesSection } from "@/components/organisms/SlidesSection/SlidesSection";
 import { QuoteSection } from "@/components/organisms/QuoteSection/QuoteSection";
-import { sectionFirstSlides, sectionSecondSlides } from "@/data/slides";
+import {
+  sectionFirstSlides,
+  sectionSecondSlides,
+  sectionThirdSlides,
+} from "@/data/slides";
 import { quotesFirst, quotesSecond } from "@/data/quotes";
 
 export default function Home() {
@@ -25,6 +29,12 @@ export default function Home() {
       <SectionSpacer />
 
       <QuoteSection quotes={quotesSecond} />
+
+      <SectionSpacer />
+
+      <SlidesSection {...sectionThirdSlides} />
+
+      <SectionSpacer />
     </main>
   );
 }

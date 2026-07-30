@@ -1,7 +1,7 @@
 import { SlidesSectionProps } from "@/components/organisms/SlidesSection/SlidesSection";
 
 export const sectionFirstSlides: SlidesSectionProps = {
-  id: "kimjestem",
+  id: "anchor_about",
   sectionName: "section_first_slides_title",
   ariaLabel: "section_first_slides_title",
   boxPadding: 0,
@@ -34,7 +34,7 @@ export const sectionFirstSlides: SlidesSectionProps = {
 };
 
 export const sectionSecondSlides: SlidesSectionProps = {
-  id: "jakpracuje",
+  id: "anchor_process",
   sectionName: "section_second_slides_title",
   ariaLabel: "section_second_slides_title",
   slides: [
@@ -78,6 +78,52 @@ export const sectionSecondSlides: SlidesSectionProps = {
       imageSrc: "/section_02_05.webp",
       imageSrcDimensions: { width: 580, height: 472 },
       colorImageSrc: "/section_02_05_color.webp",
+    },
+  ],
+};
+
+export const sectionThirdSlides: SlidesSectionProps = {
+  id: "anchor_services",
+  sectionName: "section_third_slides_title",
+  ariaLabel: "section_third_slides_title",
+  reverse: true,
+  hasBackground: true,
+  slides: [
+    {
+      description: "section_third_slides_slide_1_description",
+      imageAlt: "section_third_slides_slide_1_alt",
+      imageSrc: "/section_03_01.webp",
+      imageSrcDimensions: { width: 580, height: 537 },
+      colorImageSrc: "/section_03_01_color.webp",
+      imagePreload: true,
+    },
+    {
+      description: "section_third_slides_slide_2_description",
+      imageAlt: "section_third_slides_slide_2_alt",
+      imageSrc: "/section_03_01.webp",
+      imageSrcDimensions: { width: 580, height: 537 },
+      colorImageSrc: "/section_03_01_color.webp",
+    },
+    {
+      description: "section_third_slides_slide_3_description",
+      imageAlt: "section_third_slides_slide_3_alt",
+      imageSrc: "/section_03_01.webp",
+      imageSrcDimensions: { width: 580, height: 537 },
+      colorImageSrc: "/section_03_01_color.webp",
+    },
+    {
+      description: "section_third_slides_slide_4_description",
+      imageAlt: "section_third_slides_slide_4_alt",
+      imageSrc: "/section_03_01.webp",
+      imageSrcDimensions: { width: 580, height: 537 },
+      colorImageSrc: "/section_03_01_color.webp",
+    },
+    {
+      description: "section_third_slides_slide_5_description",
+      imageAlt: "section_third_slides_slide_5_alt",
+      imageSrc: "/section_03_01.webp",
+      imageSrcDimensions: { width: 580, height: 537 },
+      colorImageSrc: "/section_03_01_color.webp",
     },
   ],
 };
