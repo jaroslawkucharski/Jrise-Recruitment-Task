@@ -1,5 +1,10 @@
 import type { ReactNode } from "react";
-import { useTranslations } from "next-intl";
+import {
+  createTranslator,
+  NextIntlClientProvider,
+  useTranslations,
+} from "next-intl";
+import type { AbstractIntlMessages } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import { MessageKey } from "@/i18n/messages";
 
@@ -43,4 +48,35 @@ export function useAppTranslations() {
 
 export async function getAppTranslations() {
   return withDefaultRichValues(await getTranslations());
+}
+
+export function AppIntlProvider({
+  children,
+  locale,
+  messages,
+}: {
+  children: ReactNode;
+  locale: string;
+  messages: AbstractIntlMessages;
+}) {
+  return (
+    <NextIntlClientProvider locale={locale} messages={messages}>
+      {children}
+    </NextIntlClientProvider>
+  );
+}
+
+export function createAppTranslator({
+  locale,
+  messages,
+}: {
+  locale: string;
+  messages: AbstractIntlMessages;
+}) {
+  return withDefaultRichValues(
+    createTranslator({
+      locale,
+      messages,
+    }),
+  );
 }

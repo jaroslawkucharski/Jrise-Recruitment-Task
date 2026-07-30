@@ -1,19 +1,24 @@
-import { createTranslator } from "next-intl";
 import { screen } from "@testing-library/react";
 import { messages } from "@/i18n/messages";
+import { createAppTranslator } from "@/i18n/translations";
 import { renderWithIntl, t } from "@/utils/renderWithIntl";
 import { vi } from "vitest";
 
 import { Header } from "./Header";
 
-const translator = createTranslator({
+const translator = createAppTranslator({
   locale: "pl",
   messages,
 });
 
-vi.mock("@/i18n/translations", () => ({
-  getAppTranslations: async () => translator,
-}));
+vi.mock("@/i18n/translations", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("@/i18n/translations")>();
+
+  return {
+    ...actual,
+    getAppTranslations: async () => translator,
+  };
+});
 
 vi.mock("@/components/atoms/Logo/Logo", () => ({
   Logo: function MockLogo() {

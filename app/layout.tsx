@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import "./globals.css";
 import { Header } from "@/components/organisms/Header/Header";
-import { getAppTranslations } from "@/i18n/translations";
+import { AppIntlProvider, getAppTranslations } from "@/i18n/translations";
 
 const inter = Inter({
   variable: "--font-body",
@@ -61,11 +60,11 @@ export default async function RootLayout({
   return (
     <html lang={locale} className={`${inter.variable}`}>
       <body className="min-h-screen bg-neutral-hover text-neutral-0">
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <AppIntlProvider locale={locale} messages={messages}>
           <Header />
 
           {children}
-        </NextIntlClientProvider>
+        </AppIntlProvider>
       </body>
     </html>
   );
