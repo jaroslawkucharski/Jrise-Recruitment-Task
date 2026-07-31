@@ -13,6 +13,7 @@
     "coverage": "npm run test:coverage && npm run coverage:badge"
   },
   "dependencies": {
+    "@hookform/resolvers": "5.5.7",
     "clsx": "2.1.1",
     "embla-carousel-auto-scroll": "8.6.0",
     "embla-carousel-react": "8.6.0",
@@ -20,7 +21,9 @@
     "next-intl": "4.13.4",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "wavesurfer.js": "7.12.11"
+    "react-hook-form": "7.83.0",
+    "wavesurfer.js": "7.12.11",
+    "zod": "4.4.3"
   },
   "devDependencies": {
     "@svgr/webpack": "8.1.0",
