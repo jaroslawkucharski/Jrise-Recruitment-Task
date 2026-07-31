@@ -96,7 +96,11 @@ export function ContactSection({
 
       <div className="relative mx-auto flex w-full max-w-300 flex-col items-center px-4 pt-18 pb-8 text-center sm:px-6 md:px-12 lg:pt-24 xl:px-0">
         <div className="flex w-full max-w-206 flex-col items-center gap-10 lg:gap-12">
-          <Heading level="h2" weight={400} className="text-[64px]!">
+          <Heading
+            level="h2"
+            weight={400}
+            className="text-[42px]! sm:text-[52px]! lg:text-[64px]!"
+          >
             <RevealText>{t(titleKey)}</RevealText>
           </Heading>
 
