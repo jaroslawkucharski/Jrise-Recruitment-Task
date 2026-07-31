@@ -61,6 +61,9 @@ describe("HeroSection", () => {
     expect(screen.getByTestId("hero-cta-link").getAttribute("href")).toBe(
       `/#${t("anchor_contact")}`,
     );
+    expect(screen.getByAltText(t("home_background_alt"))).toBeDefined();
+    expect(screen.getByAltText(t("home_partner_logo_1_alt"))).toBeDefined();
+    expect(screen.getByAltText(t("home_partner_logo_5_alt"))).toBeDefined();
     expect(container.querySelectorAll("img")).toHaveLength(6);
   });
 });

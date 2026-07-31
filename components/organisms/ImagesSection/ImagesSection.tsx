@@ -6,6 +6,7 @@ import { type MessageKey } from "@/i18n/messages";
 import { useAppTranslations } from "@/i18n/translations";
 
 export type ImageTile = {
+  altKey: MessageKey;
   src: string;
   hoverSrc: string;
   dimensions: ImageDimensions;
@@ -21,16 +22,19 @@ export type ImagesSectionProps = {
 function ImageColumn({
   className,
   images,
+  t,
 }: {
   className?: string;
   images: ImageTile[];
+  t: ReturnType<typeof useAppTranslations>;
 }) {
   return (
     <div className={className}>
       {images.map((image) => (
         <HoverImage
           key={image.src}
-          alt=""
+          alt={t(image.altKey)}
+          hoverAlt={t(image.altKey)}
           src={image.src}
           hoverSrc={image.hoverSrc}
           srcDimensions={image.dimensions}
@@ -57,16 +61,19 @@ export function ImagesSection({
       <ImageColumn
         className="flex w-full flex-col gap-3 xl:w-87.5 xl:flex-none"
         images={primaryColumn}
+        t={t}
       />
 
       <ImageColumn
         className="flex w-full flex-col gap-3 xl:w-119 xl:flex-none"
         images={secondaryColumn}
+        t={t}
       />
 
       <ImageColumn
         className="flex w-full flex-col gap-3 xl:w-87.5 xl:flex-none"
         images={thirdColumn}
+        t={t}
       />
     </section>
   );

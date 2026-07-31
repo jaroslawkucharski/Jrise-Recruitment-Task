@@ -1,6 +1,7 @@
-import { act, render, screen } from "@testing-library/react";
+import { act, screen } from "@testing-library/react";
 import { vi } from "vitest";
 import { RevealText } from "./RevealText";
+import { renderWithIntl, t } from "@/utils/renderWithIntl";
 
 type IntersectionObserverCallback = (
   entries: IntersectionObserverEntry[],
@@ -62,8 +63,8 @@ describe("RevealText", () => {
   });
 
   it("renders a span by default and updates classes from intersection changes", () => {
-    const { unmount } = render(
-      <RevealText data-testid="reveal-text">Tekst testowy</RevealText>,
+    const { unmount } = renderWithIntl(
+      <RevealText data-testid="reveal-text">{t("contact_section_title")}</RevealText>,
     );
 
     const element = screen.getByTestId("reveal-text");
@@ -100,9 +101,9 @@ describe("RevealText", () => {
       }),
     });
 
-    render(
+    renderWithIntl(
       <RevealText as="div" className="custom-class" data-testid="reveal-block">
-        Blok tekstu
+        {t("contact_section_description")}
       </RevealText>,
     );
 

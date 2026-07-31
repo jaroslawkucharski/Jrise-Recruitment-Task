@@ -17,7 +17,7 @@ describe("Box", () => {
       t("section_second_slides_slide_1_title"),
     );
     expect(screen.getByTestId("box-description").textContent).toContain(
-      "Każdy projekt startuje",
+      t("section_second_slides_slide_1_description"),
     );
     expect(screen.getByTestId("box-step").textContent).toBe("03");
     expect(screen.getByTestId("box-step").getAttribute("aria-label")).toBe(

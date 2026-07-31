@@ -8,6 +8,7 @@ export type ImageDimensions = {
 
 type HoverImageProps = {
   alt: string;
+  hoverAlt?: string;
   src: string;
   srcDimensions: ImageDimensions;
   hoverSrc?: string;
@@ -20,6 +21,7 @@ export function HoverImage({
   alt,
   className,
   hoverSrc,
+  hoverAlt,
   sizes,
   src,
   srcDimensions,
@@ -47,8 +49,7 @@ export function HoverImage({
       {hoverSrc ? (
         <Image
           src={hoverSrc}
-          alt=""
-          aria-hidden="true"
+          alt={hoverAlt ?? alt}
           width={srcDimensions.width}
           height={srcDimensions.height}
           className="absolute inset-0 w-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"

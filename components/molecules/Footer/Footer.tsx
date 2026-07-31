@@ -2,7 +2,7 @@
 
 import { Text } from "@/components/atoms/Text/Text";
 
-type ContactFooterProps = {
+type FooterProps = {
   copyright: string;
   privacyHref: string;
   privacyLabel: string;
@@ -11,17 +11,17 @@ type ContactFooterProps = {
   siteLabel: string;
 };
 
-export function ContactFooter({
+export function Footer({
   copyright,
   privacyHref,
   privacyLabel,
   rightsLabel,
   siteHref,
   siteLabel,
-}: ContactFooterProps) {
+}: FooterProps) {
   return (
     <footer
-      className="mt-auto flex flex-wrap items-center justify-center gap-x-2 gap-y-1 pt-16 text-center"
+      className="mt-auto flex flex-wrap items-center justify-center gap-x-2 gap-y-1 pt-26 text-center"
       data-testid="contact-footer"
     >
       <Text size={14} className="text-neutral-300">

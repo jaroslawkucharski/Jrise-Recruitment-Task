@@ -4,6 +4,7 @@ import Image from "next/image";
 
 type SocialLinkProps = {
   href: string;
+  iconAlt: string;
   iconSrc: string;
   label: string;
   testId: string;
@@ -11,6 +12,7 @@ type SocialLinkProps = {
 
 export function SocialLink({
   href,
+  iconAlt,
   iconSrc,
   label,
   testId,
@@ -24,7 +26,7 @@ export function SocialLink({
       rel="noreferrer"
       data-testid={testId}
     >
-      <Image src={iconSrc} alt="" aria-hidden="true" width={24} height={24} />
+      <Image src={iconSrc} alt={iconAlt} width={24} height={24} />
     </a>
   );
 }

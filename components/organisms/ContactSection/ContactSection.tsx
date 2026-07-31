@@ -5,19 +5,21 @@ import { Heading } from "@/components/atoms/Heading/Heading";
 import { LinkButton } from "@/components/atoms/Button/LinkButton";
 import { RevealText } from "@/components/atoms/RevealText/RevealText";
 import { Text } from "@/components/atoms/Text/Text";
+import { Footer } from "@/components/molecules/Footer/Footer";
+import { ContactLink } from "@/components/molecules/ContactLink/ContactLink";
+import { SocialLink } from "@/components/molecules/SocialLink/SocialLink";
 import { type MessageKey } from "@/i18n/messages";
 import { useAppTranslations } from "@/i18n/translations";
-import { ContactFooter } from "./UI/ContactFooter";
-import { ContactLink } from "./UI/ContactLink";
-import { SocialLink } from "./UI/SocialLink";
+import { SectionSpacer } from "@/components/atoms/SectionSpacer/SectionSpacer";
 
 export type ContactPhone = {
-  href: string;
-  value: string;
+  hrefKey: MessageKey;
+  valueKey: MessageKey;
 };
 
 export type ContactSocialLink = {
-  href: string;
+  hrefKey: MessageKey;
+  iconAltKey: MessageKey;
   iconSrc: string;
   labelKey: MessageKey;
   testId: string;
@@ -25,18 +27,19 @@ export type ContactSocialLink = {
 
 export type ContactSectionProps = {
   ariaLabelKey: MessageKey;
-  ctaHref: string;
+  ctaHrefKey: MessageKey;
   ctaLabelKey: MessageKey;
+  backgroundAltKey: MessageKey;
   descriptionKey: MessageKey;
-  email: string;
+  emailKey: MessageKey;
   footerCopyrightKey: MessageKey;
-  footerPrivacyHref: string;
+  footerPrivacyHrefKey: MessageKey;
   footerPrivacyKey: MessageKey;
   footerRightsKey: MessageKey;
   idKey: MessageKey;
   nameKey: MessageKey;
   phones: ContactPhone[];
-  siteHref: string;
+  siteHrefKey: MessageKey;
   siteLabelKey: MessageKey;
   socials: ContactSocialLink[];
   titleKey: MessageKey;
@@ -44,18 +47,19 @@ export type ContactSectionProps = {
 
 export function ContactSection({
   ariaLabelKey,
-  ctaHref,
+  ctaHrefKey,
   ctaLabelKey,
+  backgroundAltKey,
   descriptionKey,
-  email,
+  emailKey,
   footerCopyrightKey,
-  footerPrivacyHref,
+  footerPrivacyHrefKey,
   footerPrivacyKey,
   footerRightsKey,
   idKey,
   nameKey,
   phones,
-  siteHref,
+  siteHrefKey,
   siteLabelKey,
   socials,
   titleKey,
@@ -71,7 +75,7 @@ export function ContactSection({
     >
       <Image
         src="/contact_section.webp"
-        alt=""
+        alt={t(backgroundAltKey)}
         aria-hidden="true"
         fill
         sizes="100vw"
@@ -83,8 +87,8 @@ export function ContactSection({
         className="absolute inset-0 bg-[radial-gradient(circle_at_top_center,rgba(255,255,255,0.18),transparent_24%),linear-gradient(180deg,rgba(0,0,0,0.22)_0%,rgba(0,0,0,0.56)_30%,rgba(0,0,0,0.8)_100%)]"
       />
 
-      <div className="relative mx-auto flex min-h-[min(100svh,980px)] w-full max-w-300 flex-col items-center px-4 pt-18 pb-8 text-center sm:px-6 md:px-12 lg:pt-24 xl:px-0">
-        <div className="flex w-full max-w-[824px] flex-col items-center gap-10 lg:gap-12">
+      <div className="relative mx-auto flex w-full max-w-300 flex-col items-center px-4 pt-18 pb-8 text-center sm:px-6 md:px-12 lg:pt-24 xl:px-0">
+        <div className="flex w-full max-w-206 flex-col items-center gap-10 lg:gap-12">
           <Heading
             level="h2"
             weight={400}
@@ -93,7 +97,7 @@ export function ContactSection({
             <RevealText>{t(titleKey)}</RevealText>
           </Heading>
 
-          <div className="w-full border border-brand-green bg-black/58 px-6 py-6 shadow-[0_0_34px_rgba(0,0,0,0.55)] backdrop-blur-[8px] sm:px-10 sm:py-7">
+          <div className="w-full border border-brand-green bg-black/58 px-6 py-6 shadow-[0_0_34px_rgba(0,0,0,0.55)] backdrop-blur-sm sm:px-10 sm:py-7">
             <p>
               <Text
                 size={16}
@@ -105,7 +109,7 @@ export function ContactSection({
           </div>
 
           <LinkButton
-            href={ctaHref}
+            href={t(ctaHrefKey)}
             variant="secondary"
             className="w-full sm:w-auto"
             data-testid="contact-cta-link"
@@ -126,11 +130,16 @@ export function ContactSection({
           <div>
             <div className="flex flex-wrap items-center justify-center gap-x-1">
               {phones.map((phone, index) => (
-                <div key={phone.href} className="flex items-center gap-1">
+                <div key={phone.hrefKey} className="flex items-center gap-1">
                   <ContactLink
-                    href={phone.href}
+                    href={t(phone.hrefKey)}
+                    iconAlt={
+                      index === 0
+                        ? t("contact_section_phone_icon_alt")
+                        : undefined
+                    }
                     iconSrc={index === 0 ? "/contact.svg" : undefined}
-                    label={phone.value}
+                    label={t(phone.valueKey)}
                     testId={`contact-phone-${index}`}
                   />
 
@@ -139,7 +148,7 @@ export function ContactSection({
                       aria-hidden="true"
                       className="hidden text-neutral-300 sm:inline"
                     >
-                      |
+                      <RevealText>|</RevealText>
                     </span>
                   ) : null}
                 </div>
@@ -147,16 +156,18 @@ export function ContactSection({
             </div>
 
             <ContactLink
-              href={`mailto:${email}`}
+              href={`mailto:${t(emailKey)}`}
+              iconAlt={t("contact_section_email_icon_alt")}
               iconSrc="/envelope.svg"
-              label={email}
+              label={t(emailKey)}
               testId="contact-email-link"
             />
           </div>
 
           <div className="mt-3 flex items-center justify-center gap-7">
             <SocialLink
-              href={socials[0]?.href ?? "#"}
+              href={socials[0] ? t(socials[0].hrefKey) : "#"}
+              iconAlt={socials[0] ? t(socials[0].iconAltKey) : ""}
               iconSrc={socials[0]?.iconSrc ?? "/facebook.svg"}
               label={socials[0] ? t(socials[0].labelKey) : ""}
               testId={socials[0]?.testId ?? "contact-social-0"}
@@ -165,7 +176,8 @@ export function ContactSection({
             <span aria-hidden="true" className="h-6 w-px bg-neutral-300/65" />
 
             <SocialLink
-              href={socials[1]?.href ?? "#"}
+              href={socials[1] ? t(socials[1].hrefKey) : "#"}
+              iconAlt={socials[1] ? t(socials[1].iconAltKey) : ""}
               iconSrc={socials[1]?.iconSrc ?? "/instagram.svg"}
               label={socials[1] ? t(socials[1].labelKey) : ""}
               testId={socials[1]?.testId ?? "contact-social-1"}
@@ -173,12 +185,12 @@ export function ContactSection({
           </div>
         </address>
 
-        <ContactFooter
+        <Footer
           copyright={t(footerCopyrightKey)}
-          siteHref={siteHref}
+          siteHref={t(siteHrefKey)}
           siteLabel={t(siteLabelKey)}
           rightsLabel={t(footerRightsKey)}
-          privacyHref={footerPrivacyHref}
+          privacyHref={t(footerPrivacyHrefKey)}
           privacyLabel={t(footerPrivacyKey)}
         />
       </div>
