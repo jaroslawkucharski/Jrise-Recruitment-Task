@@ -1,16 +1,17 @@
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
+import { Button } from "@/components/atoms/Button/Button";
 import { Heading } from "@/components/atoms/Heading/Heading";
-import { LinkButton } from "@/components/atoms/Button/LinkButton";
 import { RevealText } from "@/components/atoms/RevealText/RevealText";
 import { Text } from "@/components/atoms/Text/Text";
+import { ContactFormModal } from "@/components/organisms/ContactFormModal/ContactFormModal";
 import { Footer } from "@/components/molecules/Footer/Footer";
 import { ContactLink } from "@/components/molecules/ContactLink/ContactLink";
 import { SocialLink } from "@/components/molecules/SocialLink/SocialLink";
 import { type MessageKey } from "@/i18n/messages";
 import { useAppTranslations } from "@/i18n/translations";
-import { SectionSpacer } from "@/components/atoms/SectionSpacer/SectionSpacer";
 
 export type ContactPhone = {
   hrefKey: MessageKey;
@@ -27,7 +28,6 @@ export type ContactSocialLink = {
 
 export type ContactSectionProps = {
   ariaLabelKey: MessageKey;
-  ctaHrefKey: MessageKey;
   ctaLabelKey: MessageKey;
   backgroundAltKey: MessageKey;
   descriptionKey: MessageKey;
@@ -47,7 +47,6 @@ export type ContactSectionProps = {
 
 export function ContactSection({
   ariaLabelKey,
-  ctaHrefKey,
   ctaLabelKey,
   backgroundAltKey,
   descriptionKey,
@@ -65,6 +64,7 @@ export function ContactSection({
   titleKey,
 }: ContactSectionProps) {
   const t = useAppTranslations();
+  const [isContactFormOpen, setIsContactFormOpen] = useState(false);
 
   return (
     <section
@@ -84,38 +84,31 @@ export function ContactSection({
 
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-[radial-gradient(circle_at_top_center,rgba(255,255,255,0.18),transparent_24%),linear-gradient(180deg,rgba(0,0,0,0.22)_0%,rgba(0,0,0,0.56)_30%,rgba(0,0,0,0.8)_100%)]"
+        className="absolute inset-0 bg-linear-to-t from-transparent via-transparent to-neutral-hover"
       />
 
       <div className="relative mx-auto flex w-full max-w-300 flex-col items-center px-4 pt-18 pb-8 text-center sm:px-6 md:px-12 lg:pt-24 xl:px-0">
         <div className="flex w-full max-w-206 flex-col items-center gap-10 lg:gap-12">
-          <Heading
-            level="h2"
-            weight={400}
-            className="text-[54px] leading-none sm:text-[68px] lg:text-[76px]"
-          >
+          <Heading level="h2" weight={400} className="text-[64px]!">
             <RevealText>{t(titleKey)}</RevealText>
           </Heading>
 
-          <div className="w-full border border-brand-green bg-black/58 px-6 py-6 shadow-[0_0_34px_rgba(0,0,0,0.55)] backdrop-blur-sm sm:px-10 sm:py-7">
-            <p>
-              <Text
-                size={16}
-                className="leading-[1.45] text-neutral-0 sm:text-[18px]"
-              >
-                <RevealText>{t(descriptionKey)}</RevealText>
-              </Text>
-            </p>
+          <div className="w-full bg-black/58 px-6 py-6 shadow-[0_0_34px_rgba(0,0,0,0.55)] backdrop-blur-sm sm:px-10 sm:py-7 relative isolate border border-[rgba(98,104,104,0.38)] before:pointer-events-none before:absolute before:inset-0 before:content-[''] before:bg-[linear-gradient(90deg,transparent_0%,transparent_62%,rgba(0,255,0,0.88)_90%,rgba(0,255,0,0.22)_100%),linear-gradient(180deg,rgba(0,255,0,0.72)_0%,rgba(0,255,0,0)_28%),linear-gradient(90deg,rgba(0,255,0,0.78)_0%,rgba(0,255,0,0)_30%),linear-gradient(180deg,rgba(0,255,0,0)_72%,rgba(0,255,0,0.72)_100%)] before:bg-size-[100%_1px,1px_100%,100%_1px,1px_100%] before:bg-position-[top,right,bottom,left] before:bg-no-repeat">
+            <Text size={16}>
+              <RevealText>{t(descriptionKey)}</RevealText>
+            </Text>
           </div>
 
-          <LinkButton
-            href={t(ctaHrefKey)}
-            variant="secondary"
+          <Button
+            aria-controls="contact-form-modal"
+            aria-expanded={isContactFormOpen}
+            aria-haspopup="dialog"
             className="w-full sm:w-auto"
-            data-testid="contact-cta-link"
+            onClick={() => setIsContactFormOpen(true)}
+            data-testid="contact-cta-button"
           >
             <RevealText>{t(ctaLabelKey)}</RevealText>
-          </LinkButton>
+          </Button>
         </div>
 
         <address className="mt-14 flex not-italic flex-col items-center gap-5 lg:mt-16">
@@ -194,6 +187,11 @@ export function ContactSection({
           privacyLabel={t(footerPrivacyKey)}
         />
       </div>
+
+      <ContactFormModal
+        isOpen={isContactFormOpen}
+        onClose={() => setIsContactFormOpen(false)}
+      />
     </section>
   );
 }
