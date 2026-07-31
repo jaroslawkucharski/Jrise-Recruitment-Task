@@ -5,6 +5,7 @@ import type WaveSurfer from "wavesurfer.js";
 import { Heading } from "@/components/atoms/Heading/Heading";
 import { Text } from "@/components/atoms/Text/Text";
 import { Button } from "@/components/atoms/Button/Button";
+import { useAppTranslations } from "@/i18n/translations";
 import Play from "@/public/play.svg";
 import Pause from "@/public/pause.svg";
 
@@ -29,6 +30,8 @@ function formatDuration(value: number) {
 }
 
 export function AudioWavePlayer({ label, src }: AudioWavePlayerProps) {
+  const t = useAppTranslations();
+
   const waveformRef = useRef<HTMLDivElement | null>(null);
   const wavesurferRef = useRef<WaveSurfer | null>(null);
 
@@ -129,18 +132,26 @@ export function AudioWavePlayer({ label, src }: AudioWavePlayerProps) {
   };
 
   return (
-    <div className="flex w-full flex-col gap-5" data-testid={`audio-player-${label}`}>
+    <div
+      className="flex w-full flex-col gap-5"
+      data-testid={`audio-player-${label}`}
+    >
       <Heading level="h5" weight={700}>
         {label}
       </Heading>
 
       <div className="flex w-full items-center gap-6">
         <Button
+          aria-label={
+            isPlaying
+              ? t("before_after_player_pause_aria", { label })
+              : t("before_after_player_play_aria", { label })
+          }
           className="hover:[&_path]:fill-neutral-hover"
           onClick={togglePlayback}
           disabled={!isWaveformReady}
           isSquare
-          data-testid="slides-prev-button"
+          data-testid="audio-player-toggle"
         >
           {isPlaying ? (
             <Pause aria-hidden="true" />
@@ -150,9 +161,11 @@ export function AudioWavePlayer({ label, src }: AudioWavePlayerProps) {
         </Button>
 
         <div
-          aria-label={`przebieg audio`}
+          aria-label={t("before_after_waveform_aria", { label })}
           className="min-h-11.5 w-44.5 flex-1"
+          data-testid="audio-player-waveform"
           ref={waveformRef}
+          role="img"
         />
 
         <Text size={16} weight={500}>

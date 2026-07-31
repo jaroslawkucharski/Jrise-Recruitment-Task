@@ -35,6 +35,7 @@ describe("Navigation", () => {
   it("renders navigation landmark with translated label", async () => {
     renderWithIntl(await Navigation({ items: navigationItems }));
 
+    expect(screen.getByTestId("primary-navigation")).toBeDefined();
     expect(
       screen.getByRole("navigation", { name: t("header_nav_aria") }),
     ).toBeDefined();

@@ -15,7 +15,11 @@ export async function HeroSection() {
   const t = await getAppTranslations();
 
   return (
-    <section className="relative flex min-h-[calc(100svh-72px)] w-full items-center justify-center overflow-hidden bg-neutral-hover">
+    <section
+      aria-label={t("home_section_aria")}
+      className="relative flex min-h-[calc(100svh-72px)] w-full items-center justify-center overflow-hidden bg-neutral-hover"
+      data-testid="hero-section"
+    >
       <Image
         src={HeroImage}
         alt=""
@@ -46,12 +50,16 @@ export async function HeroSection() {
             <LinkButton
               variant="secondary"
               href={getAnchorHref(t("anchor_contact"))}
+              data-testid="hero-cta-link"
             >
               <RevealText>{t("home_button")}</RevealText>
             </LinkButton>
           </div>
 
-          <div className="flex w-full flex-wrap items-center justify-center gap-10">
+          <div
+            aria-hidden="true"
+            className="flex w-full flex-wrap items-center justify-center gap-10"
+          >
             <Image src={Logo01} alt="" width={63} height={32} preload />
 
             <Image src={Logo02} alt="" width={30} height={32} preload />

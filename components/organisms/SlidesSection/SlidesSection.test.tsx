@@ -124,6 +124,11 @@ describe("SlidesSection", () => {
   it("uses the translated anchor slug as the section id", () => {
     renderWithIntl(<SlidesSection {...sectionSecondSlides} />);
 
+    expect(
+      screen.getByRole("region", {
+        name: t(sectionSecondSlides.ariaLabelKey),
+      }),
+    ).toBeDefined();
     expect(screen.getByTestId("slides-section").getAttribute("id")).toBe(
       t(sectionSecondSlides.idKey),
     );
