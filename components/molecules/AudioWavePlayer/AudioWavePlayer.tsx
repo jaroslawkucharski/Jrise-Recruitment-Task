@@ -8,6 +8,7 @@ import { Button } from "@/components/atoms/Button/Button";
 import { useAppTranslations } from "@/i18n/translations";
 import Play from "@/public/play.svg";
 import Pause from "@/public/pause.svg";
+import { RevealText } from "@/components/atoms/RevealText/RevealText";
 
 export type AudioWavePlayerProps = {
   label: string;
@@ -60,8 +61,8 @@ export function AudioWavePlayer({ label, src }: AudioWavePlayerProps) {
         container: waveformRef.current,
         url: src,
         height: 46,
-        waveColor: "#898E8E",
-        progressColor: "#00FF00",
+        waveColor: "var(--color-neutral-400)",
+        progressColor: "var(--color-brand-green)",
         cursorColor: "transparent",
         cursorWidth: 0,
         barWidth: 2.33,
@@ -137,7 +138,7 @@ export function AudioWavePlayer({ label, src }: AudioWavePlayerProps) {
       data-testid={`audio-player-${label}`}
     >
       <Heading level="h5" weight={700}>
-        {label}
+        <RevealText>{label}</RevealText>
       </Heading>
 
       <div className="flex w-full items-center gap-6">
@@ -147,7 +148,7 @@ export function AudioWavePlayer({ label, src }: AudioWavePlayerProps) {
               ? t("before_after_player_pause_aria", { label })
               : t("before_after_player_play_aria", { label })
           }
-          className="hover:[&_path]:fill-neutral-hover"
+          className="h-12! w-12! hover:[&_path]:fill-neutral-hover"
           onClick={togglePlayback}
           disabled={!isWaveformReady}
           isSquare

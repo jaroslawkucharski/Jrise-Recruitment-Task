@@ -1,12 +1,13 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { Button } from "./Button";
+import { renderWithIntl, t } from "@/utils/renderWithIntl";
 
 describe("Button", () => {
   it("renders with default variant classes", () => {
-    render(<Button>Wycen projekt</Button>);
+    renderWithIntl(<Button>{t("home_button")}</Button>);
 
-    const button = screen.getByRole("button", { name: "Wycen projekt" });
-    const text = screen.getByText("Wycen projekt");
+    const button = screen.getByRole("button", { name: t("home_button") });
+    const text = screen.getByText(t("home_button"));
 
     expect(button.getAttribute("type")).toBe("button");
     expect(button.classList.contains("border-brand-green")).toBe(true);
@@ -16,18 +17,23 @@ describe("Button", () => {
   });
 
   it("supports custom variant, size and className", () => {
-    render(
+    renderWithIntl(
       <Button className="w-full" size={14} type="submit" variant="secondary">
-        Wyślij
+        {t("contact_section_footer_privacy")}
       </Button>,
     );
 
-    const button = screen.getByRole("button", { name: "Wyślij" });
-    const text = screen.getByText("Wyślij");
+    const button = screen.getByRole("button", {
+      name: t("contact_section_footer_privacy"),
+    });
+    const text = screen.getByText(t("contact_section_footer_privacy"));
 
     expect(button.getAttribute("type")).toBe("submit");
     expect(button.classList.contains("relative")).toBe(true);
-    expect(button.classList.contains("bg-black")).toBe(true);
+    expect(button.classList.contains("bg-neutral-hover/35")).toBe(true);
+    expect(button.classList.contains("border-[var(--color-neutral-500-38)]")).toBe(
+      true,
+    );
     expect(button.classList.contains("before:bg-no-repeat")).toBe(true);
     expect(text.classList.contains("text-[14px]")).toBe(true);
     expect(text.classList.contains("font-medium")).toBe(true);
@@ -35,9 +41,9 @@ describe("Button", () => {
   });
 
   it("renders square button styles when isSquare is enabled", () => {
-    render(<Button isSquare>Akcja</Button>);
+    renderWithIntl(<Button isSquare>{t("section_slides_next")}</Button>);
 
-    const button = screen.getByRole("button", { name: "Akcja" });
+    const button = screen.getByRole("button", { name: t("section_slides_next") });
 
     expect(button.classList.contains("h-[56px]")).toBe(true);
     expect(button.classList.contains("w-[56px]")).toBe(true);

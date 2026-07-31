@@ -1,24 +1,30 @@
-import { render, screen } from "@testing-library/react";
+import { screen } from "@testing-library/react";
 import { NavLink } from "./NavLink";
+import { renderWithIntl, t } from "@/utils/renderWithIntl";
+import { getAnchorHref } from "@/utils/getAnchorHref";
 
 describe("NavLink", () => {
   it("renders link text and href", () => {
-    render(<NavLink href="/#offer">Oferta</NavLink>);
+    renderWithIntl(
+      <NavLink href={getAnchorHref(t("anchor_services"))}>
+        {t("header_nav_services")}
+      </NavLink>,
+    );
 
-    const link = screen.getByRole("link", { name: "Oferta" });
+    const link = screen.getByRole("link", { name: t("header_nav_services") });
 
-    expect(link.getAttribute("href")).toBe("/#offer");
+    expect(link.getAttribute("href")).toBe(getAnchorHref(t("anchor_services")));
   });
 
   it("applies active class when active", () => {
-    render(
-      <NavLink href="/#offer" isActive>
-        Oferta
+    renderWithIntl(
+      <NavLink href={getAnchorHref(t("anchor_services"))} isActive>
+        {t("header_nav_services")}
       </NavLink>,
     );
 
     expect(
-      screen.getByRole("link", { name: "Oferta" }).classList.contains(
+      screen.getByRole("link", { name: t("header_nav_services") }).classList.contains(
         "text-brand-green",
       ),
     ).toBe(true);

@@ -22,7 +22,8 @@ export async function HeroSection() {
     >
       <Image
         src={HeroImage}
-        alt=""
+        alt={t("home_background_alt")}
+        aria-hidden="true"
         fill
         preload
         placeholder="blur"
@@ -60,15 +61,45 @@ export async function HeroSection() {
             aria-hidden="true"
             className="flex w-full flex-wrap items-center justify-center gap-10"
           >
-            <Image src={Logo01} alt="" width={63} height={32} preload />
+            <Image
+              src={Logo01}
+              alt={t("home_partner_logo_1_alt")}
+              width={63}
+              height={32}
+              preload
+            />
 
-            <Image src={Logo02} alt="" width={30} height={32} preload />
+            <Image
+              src={Logo02}
+              alt={t("home_partner_logo_2_alt")}
+              width={30}
+              height={32}
+              preload
+            />
 
-            <Image src={Logo03} alt="" width={97} height={32} preload />
+            <Image
+              src={Logo03}
+              alt={t("home_partner_logo_3_alt")}
+              width={97}
+              height={32}
+              preload
+            />
 
-            <Image src={Logo04} alt="" width={58} height={32} preload />
+            <Image
+              src={Logo04}
+              alt={t("home_partner_logo_4_alt")}
+              width={58}
+              height={32}
+              preload
+            />
 
-            <Image src={Logo05} alt="" width={80} height={32} preload />
+            <Image
+              src={Logo05}
+              alt={t("home_partner_logo_5_alt")}
+              width={80}
+              height={32}
+              preload
+            />
           </div>
         </div>
       </div>

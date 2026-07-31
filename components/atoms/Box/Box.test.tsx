@@ -17,7 +17,7 @@ describe("Box", () => {
       t("section_second_slides_slide_1_title"),
     );
     expect(screen.getByTestId("box-description").textContent).toContain(
-      "Każdy projekt startuje",
+      t("section_second_slides_slide_1_description"),
     );
     expect(screen.getByTestId("box-step").textContent).toBe("03");
     expect(screen.getByTestId("box-step").getAttribute("aria-label")).toBe(
@@ -41,7 +41,7 @@ describe("Box", () => {
     expect(screen.queryByTestId("box-step")).toBeNull();
     expect(box.classList.contains("bg-neutral-800")).toBe(false);
     expect(box.classList.contains("p-[0px]")).toBe(true);
-    expect(description.classList.contains("text-white")).toBe(true);
+    expect(description.classList.contains("text-neutral-0")).toBe(true);
   });
 
   it("renders description paragraphs with spacing between them", () => {

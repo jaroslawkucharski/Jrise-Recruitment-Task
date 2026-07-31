@@ -1,50 +1,25 @@
+<div align="center">
+
 ![Coverage](./coverage/badge/coverage.svg)
 
 # Jrise Recruitment Task
 
-Projekt frontendowy oparty o `Next.js`, `React 19`, `Tailwind CSS 4` i testy komponentowe w `Vitest`.
+# <img src="./public/screen.png" />
 
-## Getting Started
+TECH<strong>STACK</strong>
 
-Uruchom lokalnie:
+![](https://img.shields.io/badge/Next.js-000000.svg?style=for-the-badge&logo=nextdotjs&logoColor=white)
+![](https://img.shields.io/badge/TypeScript-3178C6.svg?style=for-the-badge&logo=TypeScript&logoColor=white)
+![](https://img.shields.io/badge/Tailwind%20CSS-06B6D4.svg?style=for-the-badge&logo=Tailwind-CSS&logoColor=white)
+![](https://img.shields.io/badge/Zod-408AFF.svg?style=for-the-badge&logo=Zod&logoColor=white)
+![](https://img.shields.io/badge/Testing%20Library-E33332.svg?style=for-the-badge&logo=Testing-Library&logoColor=white)
+![](https://img.shields.io/badge/Vitest-00FF74.svg?style=for-the-badge&logo=Vitest&logoColor=white)
+![](https://img.shields.io/badge/ESLint-4B32C3.svg?style=for-the-badge&logo=ESLint&logoColor=white)
 
-```bash
-npm install
-npm run dev
-```
+##
 
-Aplikacja będzie dostępna pod `http://localhost:3000`.
+APP<strong>DEMO</strong>
 
-## Scripts
+<a href="https://jrise-recruitment-task.vercel.app">`https://jrise-recruitment-task.vercel.app`</a>
 
-```bash
-npm run test
-npm run test:coverage
-npm run coverage
-```
-
-`npm run test` uruchamia Vitest w trybie watch, zgodnie z oficjalnym guide Next.js dla Vitest.
-
-`npm run coverage` generuje:
-
-- raport tekstowy w terminalu
-- raport HTML w `coverage/index.html`
-- podsumowanie JSON w `coverage/coverage-summary.json`
-- badge coverage w `coverage/badge/coverage.svg`
-
-## Tech Stack
-
-- Next.js 16
-- React 19
-- TypeScript 5
-- Tailwind CSS 4
-- Vitest
-- Testing Library
-
-## Coverage
-
-Badge w README jest generowany lokalnie na podstawie rzeczywistego wyniku `lines` z ostatniego uruchomienia coverage. Po zmianach w testach wystarczy ponownie uruchomić:
-
-```bash
-npm run coverage
-```
+##

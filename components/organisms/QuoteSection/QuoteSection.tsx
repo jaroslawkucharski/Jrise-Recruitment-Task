@@ -102,12 +102,12 @@ export function QuoteSection({ quotes }: QuoteSectionProps) {
                       duration-300 ease-out
                       ${
                         isActive
-                          ? "scale-100 opacity-100 blur-0 [text-shadow:0_0_24px_rgba(255,255,255,0.08)]"
+                          ? "scale-100 opacity-100 blur-0 [text-shadow:0_0_24px_var(--color-neutral-0-8)]"
                           : "scale-[0.985] opacity-42 blur-[2px]"
                       }
                     `}
                   >
-                    <p className="ml-30 text-[32px] font-medium text-white lg:ml-60 lg:text-[48px]">
+                    <p className="ml-30 text-[32px] font-medium text-neutral-0 lg:ml-60 lg:text-[48px]">
                       <RevealText>{t(quote)}</RevealText>
                     </p>
                   </div>
