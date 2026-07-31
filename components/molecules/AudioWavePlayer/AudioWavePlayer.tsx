@@ -148,7 +148,7 @@ export function AudioWavePlayer({ label, src }: AudioWavePlayerProps) {
               ? t("before_after_player_pause_aria", { label })
               : t("before_after_player_play_aria", { label })
           }
-          className="hover:[&_path]:fill-neutral-hover"
+          className="h-12! w-12! hover:[&_path]:fill-neutral-hover"
           onClick={togglePlayback}
           disabled={!isWaveformReady}
           isSquare

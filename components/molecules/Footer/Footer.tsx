@@ -30,6 +30,7 @@ export function Footer({
 
       <a
         href={siteHref}
+        aria-label={siteLabel}
         className="text-neutral-300 transition-colors hover:text-neutral-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-hover"
         target="_blank"
         rel="noreferrer"
@@ -54,6 +55,7 @@ export function Footer({
 
       <a
         href={privacyHref}
+        aria-label={privacyLabel}
         className="text-neutral-300 underline underline-offset-2 transition-colors hover:text-neutral-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-green focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-hover"
         target="_blank"
         rel="noreferrer"

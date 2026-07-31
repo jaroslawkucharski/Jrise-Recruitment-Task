@@ -7,7 +7,6 @@ export const contactSectionData: ContactSectionProps = {
   backgroundAltKey: "contact_section_background_alt",
   descriptionKey: "contact_section_description",
   ctaLabelKey: "contact_section_cta",
-  ctaHrefKey: "contact_section_cta_href",
   nameKey: "contact_section_name",
   phones: [
     {
