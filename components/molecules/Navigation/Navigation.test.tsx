@@ -1,4 +1,4 @@
-import { screen } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import { Navigation } from "./Navigation";
 import { navigationItems } from "@/data/navigation";
 import { messages } from "@/i18n/messages";
@@ -39,5 +39,26 @@ describe("Navigation", () => {
     expect(
       screen.getByRole("navigation", { name: t("header_nav_aria") }),
     ).toBeDefined();
+  });
+
+  it("opens and closes the mobile navigation", async () => {
+    renderWithIntl(await Navigation({ items: navigationItems }));
+
+    const toggle = screen.getByTestId("mobile-navigation-toggle");
+
+    expect(toggle.getAttribute("aria-expanded")).toBe("false");
+    expect(toggle.getAttribute("aria-label")).toBe(t("header_nav_open_aria"));
+    expect(screen.queryByTestId("mobile-navigation-panel")).toBeNull();
+
+    fireEvent.click(toggle);
+
+    expect(toggle.getAttribute("aria-expanded")).toBe("true");
+    expect(toggle.getAttribute("aria-label")).toBe(t("header_nav_close_aria"));
+    expect(screen.getByTestId("mobile-navigation-panel")).toBeDefined();
+
+    fireEvent.keyDown(window, { key: "Escape" });
+
+    expect(toggle.getAttribute("aria-expanded")).toBe("false");
+    expect(screen.queryByTestId("mobile-navigation-panel")).toBeNull();
   });
 });

@@ -13,6 +13,8 @@
   "home_partner_logo_5_alt": "Logo partnera 5",
   "header_homeAria": "Przejdź na stronę główną",
   "header_nav_aria": "Główna nawigacja",
+  "header_nav_open_aria": "Otwórz menu główne",
+  "header_nav_close_aria": "Zamknij menu główne",
   "header_nav_about": "Kim jestem",
   "header_nav_process": "Jak pracuję",
   "header_nav_services": "Co robię",
