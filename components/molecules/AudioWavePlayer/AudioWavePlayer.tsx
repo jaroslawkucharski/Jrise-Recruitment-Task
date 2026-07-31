@@ -8,6 +8,7 @@ import { Button } from "@/components/atoms/Button/Button";
 import { useAppTranslations } from "@/i18n/translations";
 import Play from "@/public/play.svg";
 import Pause from "@/public/pause.svg";
+import { RevealText } from "@/components/atoms/RevealText/RevealText";
 
 export type AudioWavePlayerProps = {
   label: string;
@@ -137,7 +138,7 @@ export function AudioWavePlayer({ label, src }: AudioWavePlayerProps) {
       data-testid={`audio-player-${label}`}
     >
       <Heading level="h5" weight={700}>
-        {label}
+        <RevealText>{label}</RevealText>
       </Heading>
 
       <div className="flex w-full items-center gap-6">
