@@ -29,9 +29,11 @@ export function ContactFormField({
   type = "text",
 }: ContactFormFieldProps) {
   const sharedClassName = clsx(
-    "w-full border border-neutral-700 bg-black px-4 py-3.75 text-neutral-0 outline-none transition-colors placeholder:text-neutral-400 focus:border-neutral-0 focus-visible:border-neutral-0",
+    "w-full border border-neutral-700 bg-black px-4 py-3.75 text-neutral-0 outline-none transition-colors placeholder:text-neutral-400",
     as === "textarea" ? "min-h-50 resize-none py-4" : "h-[52px]",
-    error && "border-error-400",
+    error
+      ? "border-error-400 focus:border-error-400 focus-visible:border-error-400"
+      : "focus:border-neutral-0 focus-visible:border-neutral-0",
   );
 
   return (
