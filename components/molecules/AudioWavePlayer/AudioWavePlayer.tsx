@@ -15,6 +15,18 @@ export type AudioWavePlayerProps = {
   src: string;
 };
 
+function getResolvedThemeColor(variableName: string, fallback: string) {
+  if (typeof window === "undefined") {
+    return fallback;
+  }
+
+  return (
+    getComputedStyle(document.documentElement)
+      .getPropertyValue(variableName)
+      .trim() || fallback
+  );
+}
+
 function formatDuration(value: number) {
   if (!Number.isFinite(value) || value <= 0) {
     return "00:00";
@@ -57,12 +69,18 @@ export function AudioWavePlayer({ label, src }: AudioWavePlayerProps) {
 
       if (isDisposed || !waveformRef.current) return;
 
+      const waveColor = getResolvedThemeColor("--color-neutral-400", "#898e8e");
+      const progressColor = getResolvedThemeColor(
+        "--color-brand-green",
+        "#00ff00",
+      );
+
       currentWaveSurfer = WaveSurfer.create({
         container: waveformRef.current,
         url: src,
         height: 46,
-        waveColor: "var(--color-neutral-400)",
-        progressColor: "var(--color-brand-green)",
+        waveColor,
+        progressColor,
         cursorColor: "transparent",
         cursorWidth: 0,
         barWidth: 2.33,
