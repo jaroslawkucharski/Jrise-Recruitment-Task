@@ -1,7 +1,6 @@
 import { type ImagesSectionProps } from "@/components/organisms/ImagesSection/ImagesSection";
 
 export const imagesSectionData: ImagesSectionProps = {
-  idKey: "anchor_beforeAfter",
   ariaLabelKey: "images_section_aria",
   primaryColumn: [
     {

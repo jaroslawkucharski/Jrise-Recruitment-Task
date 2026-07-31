@@ -12,7 +12,6 @@ export type ImageTile = {
 };
 
 export type ImagesSectionProps = {
-  idKey: MessageKey;
   ariaLabelKey: MessageKey;
   primaryColumn: ImageTile[];
   secondaryColumn: ImageTile[];
@@ -43,7 +42,6 @@ function ImageColumn({
 
 export function ImagesSection({
   ariaLabelKey,
-  idKey,
   primaryColumn,
   secondaryColumn,
   thirdColumn,
@@ -52,7 +50,6 @@ export function ImagesSection({
 
   return (
     <section
-      id={t(idKey)}
       aria-label={t(ariaLabelKey)}
       className="mx-auto flex w-full max-w-300 flex-col gap-3 px-4 sm:px-6 md:px-12 xl:px-0 overflow-hidden xl:flex-row xl:items-center xl:justify-center"
       data-testid="images-section"
