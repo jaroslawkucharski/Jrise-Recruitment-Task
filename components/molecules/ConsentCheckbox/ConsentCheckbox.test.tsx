@@ -33,7 +33,9 @@ describe("ConsentCheckbox", () => {
     fireEvent.click(checkbox);
 
     expect(
-      screen.getByAltText(t("contact_form_checkbox_icon_alt")),
+      screen.getByRole("img", {
+        name: t("contact_form_checkbox_icon_alt"),
+      }),
     ).toBeDefined();
   });
 

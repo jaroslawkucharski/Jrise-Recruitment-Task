@@ -23,14 +23,12 @@ export const contactSectionData: ContactSectionProps = {
     {
       hrefKey: "contact_section_social_facebook_href",
       iconAltKey: "contact_section_social_facebook_icon_alt",
-      iconSrc: "/facebook.svg",
       labelKey: "contact_section_social_facebook_aria",
       testId: "contact-social-facebook",
     },
     {
       hrefKey: "contact_section_social_instagram_href",
       iconAltKey: "contact_section_social_instagram_icon_alt",
-      iconSrc: "/instagram.svg",
       labelKey: "contact_section_social_instagram_aria",
       testId: "contact-social-instagram",
     },

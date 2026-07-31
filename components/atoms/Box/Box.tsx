@@ -69,7 +69,7 @@ export function Box({
           as="div"
           className={clsx(
             "text-[16px] font-normal [&_p+p]:mt-6",
-            hasBackground ? "text-neutral-300" : "text-white",
+            hasBackground ? "text-neutral-300" : "text-neutral-0",
           )}
           data-testid="box-description"
         >

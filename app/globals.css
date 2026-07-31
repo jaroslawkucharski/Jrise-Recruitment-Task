@@ -4,9 +4,24 @@
 
 @theme {
   --color-brand-green: #00ff00;
+  --color-brand-green-4: color-mix(
+    in srgb,
+    var(--color-brand-green) 4%,
+    transparent
+  );
   --color-brand-green-5: color-mix(
     in srgb,
     var(--color-brand-green) 5%,
+    transparent
+  );
+  --color-brand-green-6: color-mix(
+    in srgb,
+    var(--color-brand-green) 6%,
+    transparent
+  );
+  --color-brand-green-8: color-mix(
+    in srgb,
+    var(--color-brand-green) 8%,
     transparent
   );
   --color-brand-green-10: color-mix(
@@ -14,13 +29,67 @@
     var(--color-brand-green) 10%,
     transparent
   );
+  --color-brand-green-22: color-mix(
+    in srgb,
+    var(--color-brand-green) 22%,
+    transparent
+  );
+  --color-brand-green-72: color-mix(
+    in srgb,
+    var(--color-brand-green) 72%,
+    transparent
+  );
+  --color-brand-green-78: color-mix(
+    in srgb,
+    var(--color-brand-green) 78%,
+    transparent
+  );
+  --color-brand-green-88: color-mix(
+    in srgb,
+    var(--color-brand-green) 88%,
+    transparent
+  );
 
   --color-neutral-0: #ffffff;
+  --color-neutral-0-4: color-mix(
+    in srgb,
+    var(--color-neutral-0) 4%,
+    transparent
+  );
+  --color-neutral-0-8: color-mix(
+    in srgb,
+    var(--color-neutral-0) 8%,
+    transparent
+  );
   --color-neutral-300: #a7aaaa;
   --color-neutral-400: #898e8e;
+  --color-neutral-500: #626868;
+  --color-neutral-500-38: color-mix(
+    in srgb,
+    var(--color-neutral-500) 38%,
+    transparent
+  );
+  --color-neutral-600: #767c7c;
+  --color-neutral-600-46: color-mix(
+    in srgb,
+    var(--color-neutral-600) 46%,
+    transparent
+  );
   --color-neutral-700: #343636;
   --color-neutral-800: #181919;
   --color-neutral-hover: #000000;
+  --color-neutral-hover-55: color-mix(
+    in srgb,
+    var(--color-neutral-hover) 55%,
+    transparent
+  );
+  --color-neutral-hover-60: color-mix(
+    in srgb,
+    var(--color-neutral-hover) 60%,
+    transparent
+  );
+
+  --color-error-400: #ff0000;
 }
 
 html {

@@ -39,7 +39,7 @@
     "eslint-config-next": "16.2.12",
     "jsdom": "26.1.0",
     "tailwindcss": "4.3.3",
-    "tsx": "^4.23.1",
+    "tsx": "4.23.1",
     "typescript": "5",
     "vite": "5.4.21",
     "vite-tsconfig-paths": "6.1.1",

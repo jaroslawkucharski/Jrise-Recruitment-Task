@@ -1,14 +1,15 @@
 import { screen } from "@testing-library/react";
 import { SocialLink } from "./SocialLink";
 import { renderWithIntl, t } from "@/utils/renderWithIntl";
+import Facebook from "@/public/facebook.svg";
 
 describe("SocialLink", () => {
   it("renders a social link with translated aria-label and icon alt", () => {
     renderWithIntl(
       <SocialLink
         href={t("contact_section_social_facebook_href")}
+        icon={Facebook}
         iconAlt={t("contact_section_social_facebook_icon_alt")}
-        iconSrc="/facebook.svg"
         label={t("contact_section_social_facebook_aria")}
         testId="contact-social-link"
       />,
@@ -24,6 +25,10 @@ describe("SocialLink", () => {
     );
     expect(link.getAttribute("target")).toBe("_blank");
     expect(link.getAttribute("rel")).toBe("noreferrer");
-    expect(screen.getByAltText(t("contact_section_social_facebook_icon_alt"))).toBeDefined();
+    expect(
+      screen.getByRole("img", {
+        name: t("contact_section_social_facebook_icon_alt"),
+      }),
+    ).toBeDefined();
   });
 });

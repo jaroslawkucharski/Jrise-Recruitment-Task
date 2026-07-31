@@ -1,9 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import type { Ref } from "react";
 import { Text } from "@/components/atoms/Text/Text";
 import { RevealText } from "@/components/atoms/RevealText/RevealText";
+import Checkbox from "@/public/checkbox.svg";
 
 type ConsentCheckboxProps = {
   checkboxAlt: string;
@@ -54,11 +54,9 @@ export function ConsentCheckbox({
           <span className="absolute inset-0 rounded-[5px] border border-neutral-700 bg-black transition-colors peer-checked:border-brand-green peer-focus-visible:ring-2 peer-focus-visible:ring-brand-green peer-focus-visible:ring-offset-2 peer-focus-visible:ring-offset-neutral-hover" />
 
           {checked ? (
-            <Image
-              src="/checkbox.svg"
-              alt={checkboxAlt}
-              width={20}
-              height={20}
+            <Checkbox
+              role="img"
+              aria-label={checkboxAlt}
               className="relative z-10"
             />
           ) : null}
@@ -73,7 +71,7 @@ export function ConsentCheckbox({
         <Text
           id={`${id}-error`}
           size={14}
-          className="text-red-400"
+          className="text-error-400"
           data-testid={`${testId}-error`}
         >
           <RevealText>{error}</RevealText>

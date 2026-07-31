@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, type ComponentType, type SVGProps, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/atoms/Button/Button";
 import { Heading } from "@/components/atoms/Heading/Heading";
@@ -12,6 +12,10 @@ import { ContactLink } from "@/components/molecules/ContactLink/ContactLink";
 import { SocialLink } from "@/components/molecules/SocialLink/SocialLink";
 import { type MessageKey } from "@/i18n/messages";
 import { useAppTranslations } from "@/i18n/translations";
+import Contact from "@/public/contact.svg";
+import Envelope from "@/public/envelope.svg";
+import Facebook from "@/public/facebook.svg";
+import Instagram from "@/public/instagram.svg";
 
 export type ContactPhone = {
   hrefKey: MessageKey;
@@ -21,7 +25,6 @@ export type ContactPhone = {
 export type ContactSocialLink = {
   hrefKey: MessageKey;
   iconAltKey: MessageKey;
-  iconSrc: string;
   labelKey: MessageKey;
   testId: string;
 };
@@ -65,6 +68,10 @@ export function ContactSection({
 }: ContactSectionProps) {
   const t = useAppTranslations();
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  const socialIcons: ComponentType<SVGProps<SVGSVGElement>>[] = [
+    Facebook,
+    Instagram,
+  ];
 
   return (
     <section
@@ -126,12 +133,12 @@ export function ContactSection({
                 <div key={phone.hrefKey} className="flex items-center gap-1">
                   <ContactLink
                     href={t(phone.hrefKey)}
+                    icon={index === 0 ? Contact : undefined}
                     iconAlt={
                       index === 0
                         ? t("contact_section_phone_icon_alt")
                         : undefined
                     }
-                    iconSrc={index === 0 ? "/contact.svg" : undefined}
                     label={t(phone.valueKey)}
                     testId={`contact-phone-${index}`}
                   />
@@ -150,31 +157,40 @@ export function ContactSection({
 
             <ContactLink
               href={`mailto:${t(emailKey)}`}
+              icon={Envelope}
               iconAlt={t("contact_section_email_icon_alt")}
-              iconSrc="/envelope.svg"
               label={t(emailKey)}
               testId="contact-email-link"
             />
           </div>
 
           <div className="mt-3 flex items-center justify-center gap-7">
-            <SocialLink
-              href={socials[0] ? t(socials[0].hrefKey) : "#"}
-              iconAlt={socials[0] ? t(socials[0].iconAltKey) : ""}
-              iconSrc={socials[0]?.iconSrc ?? "/facebook.svg"}
-              label={socials[0] ? t(socials[0].labelKey) : ""}
-              testId={socials[0]?.testId ?? "contact-social-0"}
-            />
+            {socials.map((social, index) => {
+              const Icon = socialIcons[index];
 
-            <span aria-hidden="true" className="h-6 w-px bg-neutral-300/65" />
+              if (!Icon) {
+                return null;
+              }
 
-            <SocialLink
-              href={socials[1] ? t(socials[1].hrefKey) : "#"}
-              iconAlt={socials[1] ? t(socials[1].iconAltKey) : ""}
-              iconSrc={socials[1]?.iconSrc ?? "/instagram.svg"}
-              label={socials[1] ? t(socials[1].labelKey) : ""}
-              testId={socials[1]?.testId ?? "contact-social-1"}
-            />
+              return (
+                <Fragment key={social.hrefKey}>
+                  <SocialLink
+                    href={t(social.hrefKey)}
+                    icon={Icon}
+                    iconAlt={t(social.iconAltKey)}
+                    label={t(social.labelKey)}
+                    testId={social.testId}
+                  />
+
+                  {index < socials.length - 1 ? (
+                    <span
+                      aria-hidden="true"
+                      className="h-6 w-px bg-neutral-300/65"
+                    />
+                  ) : null}
+                </Fragment>
+              );
+            })}
           </div>
         </address>
 

@@ -2,7 +2,6 @@
 
 import { useEffect } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import Image from "next/image";
 import { Controller, useForm } from "react-hook-form";
 import { z } from "zod";
 import { Button } from "@/components/atoms/Button/Button";
@@ -11,6 +10,8 @@ import { RevealText } from "@/components/atoms/RevealText/RevealText";
 import { ConsentCheckbox } from "@/components/molecules/ConsentCheckbox/ConsentCheckbox";
 import { ContactFormField } from "@/components/molecules/ContactFormField/ContactFormField";
 import { useAppTranslations } from "@/i18n/translations";
+import Close from "@/public/close.svg";
+import { decorativeBorderClassName } from "@/utils/decorativeBorder";
 
 type ContactFormModalProps = {
   isOpen: boolean;
@@ -23,8 +24,9 @@ function createContactFormSchema(t: ReturnType<typeof useAppTranslations>) {
       message: t("contact_form_consent_error"),
     }),
     email: z
-      .email(t("contact_form_email_error_invalid"))
-      .min(1, t("contact_form_email_error_required")),
+      .string()
+      .min(1, t("contact_form_email_error_required"))
+      .pipe(z.email(t("contact_form_email_error_invalid"))),
     message: z
       .string()
       .min(1, t("contact_form_message_error_required"))
@@ -103,7 +105,7 @@ export function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/72 px-4 py-6 backdrop-blur-[3px]"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-hover/72 px-4 py-6 backdrop-blur-[3px]"
       onClick={handleClose}
       data-testid="contact-form-modal-overlay"
     >
@@ -114,8 +116,7 @@ export function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
         role="dialog"
         aria-modal="true"
         aria-labelledby="contact-form-title"
-        aria-describedby="contact-form-description"
-        className="relative isolate z-10 max-h-[calc(100vh-3rem)] w-full max-w-170 overflow-y-auto border border-[rgba(98,104,104,0.38)] bg-neutral-hover px-5 py-5 shadow-[0_0_40px_rgba(0,255,0,0.08),0_24px_80px_rgba(0,0,0,0.6)] [scrollbar-color:var(--color-neutral-700)_var(--color-neutral-hover)] [scrollbar-width:thin] before:pointer-events-none before:absolute before:inset-0 before:content-[''] before:bg-[linear-gradient(90deg,transparent_0%,transparent_62%,rgba(0,255,0,0.88)_90%,rgba(0,255,0,0.22)_100%),linear-gradient(180deg,rgba(0,255,0,0.72)_0%,rgba(0,255,0,0)_28%),linear-gradient(90deg,rgba(0,255,0,0.78)_0%,rgba(0,255,0,0)_30%),linear-gradient(180deg,rgba(0,255,0,0)_72%,rgba(0,255,0,0.72)_100%)] before:bg-size-[100%_1px,1px_100%,100%_1px,1px_100%] before:bg-position-[top,right,bottom,left] before:bg-no-repeat [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:border [&::-webkit-scrollbar-thumb]:border-neutral-hover [&::-webkit-scrollbar-thumb]:bg-neutral-700 [&::-webkit-scrollbar-track]:bg-neutral-hover [&::-webkit-scrollbar]:w-2 sm:px-10 sm:py-10"
+        className={`${decorativeBorderClassName} z-10 max-h-[calc(100vh-3rem)] w-full max-w-170 overflow-y-auto bg-neutral-hover px-5 py-5 shadow-[0_0_40px_var(--color-brand-green-8),0_24px_80px_var(--color-neutral-hover-60)] [scrollbar-color:var(--color-neutral-700)_var(--color-neutral-hover)] [scrollbar-width:thin] [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:border [&::-webkit-scrollbar-thumb]:border-neutral-hover [&::-webkit-scrollbar-thumb]:bg-neutral-700 [&::-webkit-scrollbar-track]:bg-neutral-hover [&::-webkit-scrollbar]:w-2 sm:px-10 sm:py-10`}
         data-testid="contact-form-modal"
         onClick={(event) => event.stopPropagation()}
       >
@@ -138,12 +139,7 @@ export function ContactFormModal({ isOpen, onClose }: ContactFormModalProps) {
             onClick={handleClose}
             data-testid="contact-form-close-button"
           >
-            <Image
-              src="/close.svg"
-              alt={t("contact_form_close_icon_alt")}
-              width={24}
-              height={24}
-            />
+            <Close role="img" aria-label={t("contact_form_close_icon_alt")} />
           </Button>
         </div>
 

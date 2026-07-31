@@ -41,7 +41,7 @@ describe("Box", () => {
     expect(screen.queryByTestId("box-step")).toBeNull();
     expect(box.classList.contains("bg-neutral-800")).toBe(false);
     expect(box.classList.contains("p-[0px]")).toBe(true);
-    expect(description.classList.contains("text-white")).toBe(true);
+    expect(description.classList.contains("text-neutral-0")).toBe(true);
   });
 
   it("renders description paragraphs with spacing between them", () => {

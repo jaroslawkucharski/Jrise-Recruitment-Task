@@ -1,19 +1,19 @@
 "use client";
 
-import Image from "next/image";
+import type { ComponentType, SVGProps } from "react";
 
 type SocialLinkProps = {
   href: string;
+  icon: ComponentType<SVGProps<SVGSVGElement>>;
   iconAlt: string;
-  iconSrc: string;
   label: string;
   testId: string;
 };
 
 export function SocialLink({
   href,
+  icon: Icon,
   iconAlt,
-  iconSrc,
   label,
   testId,
 }: SocialLinkProps) {
@@ -26,7 +26,7 @@ export function SocialLink({
       rel="noreferrer"
       data-testid={testId}
     >
-      <Image src={iconSrc} alt={iconAlt} width={24} height={24} />
+      <Icon role="img" aria-label={iconAlt} />
     </a>
   );
 }

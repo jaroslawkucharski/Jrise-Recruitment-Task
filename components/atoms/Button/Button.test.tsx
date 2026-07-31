@@ -30,7 +30,10 @@ describe("Button", () => {
 
     expect(button.getAttribute("type")).toBe("submit");
     expect(button.classList.contains("relative")).toBe(true);
-    expect(button.classList.contains("bg-black")).toBe(true);
+    expect(button.classList.contains("bg-neutral-hover/35")).toBe(true);
+    expect(button.classList.contains("border-[var(--color-neutral-500-38)]")).toBe(
+      true,
+    );
     expect(button.classList.contains("before:bg-no-repeat")).toBe(true);
     expect(text.classList.contains("text-[14px]")).toBe(true);
     expect(text.classList.contains("font-medium")).toBe(true);

@@ -31,7 +31,7 @@ export function ContactFormField({
   const sharedClassName = clsx(
     "w-full border border-neutral-700 bg-black px-4 py-3.75 text-neutral-0 outline-none transition-colors placeholder:text-neutral-400 focus:border-neutral-0 focus-visible:border-neutral-0",
     as === "textarea" ? "min-h-50 resize-none py-4" : "h-[52px]",
-    error && "border-red-500",
+    error && "border-error-400",
   );
 
   return (
@@ -39,7 +39,7 @@ export function ContactFormField({
       <label htmlFor={id}>
         <Text size={14}>
           <RevealText>{label}</RevealText>
-          {isRequired ? <span className="text-red-500">*</span> : null}
+          {isRequired ? <span className="text-error-400">*</span> : null}
         </Text>
       </label>
 
@@ -70,7 +70,7 @@ export function ContactFormField({
         <Text
           id={`${id}-error`}
           size={14}
-          className="text-red-400"
+          className="text-error-400"
           data-testid={`${testId}-error`}
         >
           <RevealText>{error}</RevealText>

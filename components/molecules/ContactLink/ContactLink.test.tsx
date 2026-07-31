@@ -1,14 +1,15 @@
 import { screen } from "@testing-library/react";
 import { ContactLink } from "./ContactLink";
 import { renderWithIntl, t } from "@/utils/renderWithIntl";
+import Contact from "@/public/contact.svg";
 
 describe("ContactLink", () => {
   it("renders a contact link with translated label and icon alt", () => {
     renderWithIntl(
       <ContactLink
         href={t("contact_section_phone_1_href")}
+        icon={Contact}
         iconAlt={t("contact_section_phone_icon_alt")}
-        iconSrc="/contact.svg"
         label={t("contact_section_phone_1")}
         testId="contact-link"
       />,
@@ -18,10 +19,14 @@ describe("ContactLink", () => {
 
     expect(link.getAttribute("href")).toBe(t("contact_section_phone_1_href"));
     expect(link.textContent).toBe(t("contact_section_phone_1"));
-    expect(screen.getByAltText(t("contact_section_phone_icon_alt"))).toBeDefined();
+    expect(
+      screen.getByRole("img", {
+        name: t("contact_section_phone_icon_alt"),
+      }),
+    ).toBeDefined();
   });
 
-  it("does not render an image when iconSrc is missing", () => {
+  it("does not render an image when icon is missing", () => {
     renderWithIntl(
       <ContactLink
         href={t("contact_section_phone_2_href")}

@@ -16,9 +16,6 @@ describe("ContactFormModal", () => {
     expect(
       screen.getByRole("heading", { name: t("contact_form_title") }),
     ).toBeDefined();
-    expect(
-      screen.getByText(t("contact_form_description")),
-    ).toBeDefined();
   });
 
   it("shows translated validation errors on empty submit", async () => {
@@ -27,8 +24,12 @@ describe("ContactFormModal", () => {
     fireEvent.submit(screen.getByTestId("contact-form"));
 
     await waitFor(() => {
-      expect(screen.getByText(t("contact_form_name_error_required"))).toBeDefined();
-      expect(screen.getByText(t("contact_form_email_error_required"))).toBeDefined();
+      expect(
+        screen.getByText(t("contact_form_name_error_required")),
+      ).toBeDefined();
+      expect(
+        screen.getByText(t("contact_form_email_error_required")),
+      ).toBeDefined();
       expect(
         screen.getByText(t("contact_form_subject_error_required")),
       ).toBeDefined();
@@ -76,6 +77,16 @@ describe("ContactFormModal", () => {
     renderWithIntl(<ContactFormModal isOpen onClose={onClose} />);
 
     fireEvent.click(screen.getByTestId("contact-form-close-button"));
+
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
+  it("closes after pressing Escape", () => {
+    const onClose = vi.fn();
+
+    renderWithIntl(<ContactFormModal isOpen onClose={onClose} />);
+
+    fireEvent.keyDown(window, { key: "Escape" });
 
     expect(onClose).toHaveBeenCalledTimes(1);
   });
