@@ -92,11 +92,13 @@ export function SlidesSection({
         >
           <div className="flex flex-col gap-8 lg:gap-10">
             <div className="flex items-center gap-3">
-              <Rectangle aria-hidden="true" />
+              <div className="p-2 flex gap-3 items-center">
+                <Rectangle aria-hidden="true" />
 
-              <Heading level="h4" weight={500}>
-                <RevealText>{t(sectionNameKey)}</RevealText>
-              </Heading>
+                <Heading level="h4" weight={500}>
+                  <RevealText>{t(sectionNameKey)}</RevealText>
+                </Heading>
+              </div>
             </div>
 
             <Box

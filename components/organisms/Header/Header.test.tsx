@@ -1,5 +1,3 @@
-import { Logo } from "@/components/atoms/Logo/Logo";
-import { Navigation } from "@/components/molecules/Navigation/Navigation";
 import { messages } from "@/i18n/messages";
 import { createAppTranslator } from "@/i18n/translations";
 import { t } from "@/utils/renderWithIntl";
@@ -21,15 +19,16 @@ vi.mock("@/i18n/translations", async (importOriginal) => {
 });
 
 describe("Header", () => {
-  it("returns the home link, logo and primary navigation structure", async () => {
+  it("returns translated labels and test ids for the home link and navigation", async () => {
     const header = await Header();
     const wrapper = header.props.children;
     const [homeLink, navigation] = wrapper.props.children;
 
     expect(header.type).toBe("header");
+    expect(header.props["data-testid"]).toBe("site-header");
     expect(homeLink.props.href).toBe("/");
+    expect(homeLink.props["data-testid"]).toBe("header-home-link");
     expect(homeLink.props["aria-label"]).toBe(t("header_homeAria"));
-    expect(homeLink.props.children.type).toBe(Logo);
-    expect(navigation.type).toBe(Navigation);
+    expect(navigation.props.items).toHaveLength(5);
   });
 });

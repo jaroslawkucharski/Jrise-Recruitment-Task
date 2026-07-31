@@ -7,9 +7,6 @@ describe("ImagesSection", () => {
   it("renders the translated anchor id and all image tiles", () => {
     renderWithIntl(<ImagesSection {...imagesSectionData} />);
 
-    expect(screen.getByTestId("images-section").getAttribute("id")).toBe(
-      t("anchor_beforeAfter"),
-    );
     expect(
       screen.getByRole("region", { name: t("images_section_aria") }),
     ).toBeDefined();

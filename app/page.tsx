@@ -1,8 +1,10 @@
+import { BeforeAfterSection } from "@/components/organisms/BeforeAfterSection/BeforeAfterSection";
 import { HeroSection } from "@/components/organisms/HeroSection/HeroSection";
 import { ImagesSection } from "@/components/organisms/ImagesSection/ImagesSection";
 import { SectionSpacer } from "@/components/atoms/SectionSpacer/SectionSpacer";
 import { SlidesSection } from "@/components/organisms/SlidesSection/SlidesSection";
 import { QuoteSection } from "@/components/organisms/QuoteSection/QuoteSection";
+import { beforeAfterSectionData } from "@/data/beforeAfter";
 import { imagesSectionData } from "@/data/images";
 import {
   sectionFirstSlides,
@@ -37,6 +39,10 @@ export default function Home() {
       <SectionSpacer />
 
       <SlidesSection {...sectionThirdSlides} />
+
+      <SectionSpacer />
+
+      <BeforeAfterSection {...beforeAfterSectionData} />
 
       <SectionSpacer />
     </main>

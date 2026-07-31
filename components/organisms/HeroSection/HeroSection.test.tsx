@@ -53,11 +53,14 @@ describe("HeroSection", () => {
   it("renders translated copy, contact link and partner logos", async () => {
     const { container } = render(await HeroSection());
 
+    expect(
+      screen.getByRole("region", { name: t("home_section_aria") }),
+    ).toBeDefined();
     expect(screen.getByRole("heading", { level: 1 })).toBeDefined();
     expect(screen.getByRole("heading", { level: 5 })).toBeDefined();
-    expect(
-      screen.getByRole("link", { name: t("home_button") }).getAttribute("href"),
-    ).toBe(`/#${t("anchor_contact")}`);
+    expect(screen.getByTestId("hero-cta-link").getAttribute("href")).toBe(
+      `/#${t("anchor_contact")}`,
+    );
     expect(container.querySelectorAll("img")).toHaveLength(6);
   });
 });

@@ -21,6 +21,7 @@ export async function Navigation({ items }: NavMenuProps) {
     <nav
       aria-label={t("header_nav_aria")}
       className="hidden items-center md:flex"
+      data-testid="primary-navigation"
     >
       <ul className="flex w-full items-center justify-end gap-6">
         {items.map(({ hrefKey, labelKey, linkButton }) => {
