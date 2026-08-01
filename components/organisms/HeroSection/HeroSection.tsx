@@ -5,6 +5,7 @@ import Logo02 from "@/public/logo_02.png";
 import Logo03 from "@/public/logo_03.webp";
 import Logo04 from "@/public/logo_04.png";
 import Logo05 from "@/public/logo_05.webp";
+import Phone from "@/public/phone.svg";
 import { Heading } from "@/components/atoms/Heading/Heading";
 import { getAppTranslations } from "@/i18n/translations";
 import { LinkButton } from "@/components/atoms/Button/LinkButton";
@@ -37,6 +38,16 @@ export async function HeroSection() {
         className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-neutral-hover"
       />
 
+      <LinkButton
+        href={t("contact_section_phone_1_href")}
+        aria-label={t("contact_section_phone_1")}
+        className="absolute right-8 bottom-33 z-10 hidden md:flex hover:[&_path]:fill-neutral-hover"
+        isSquare
+        data-testid="hero-phone-link"
+      >
+        <Phone aria-hidden="true" className="h-8 w-8" />
+      </LinkButton>
+
       <div className="relative flex w-full items-center justify-center px-6">
         <div className="flex w-full max-w-5xl flex-col items-center justify-center gap-25 text-center">
           <div className="flex w-full max-w-2xl flex-col items-center gap-6">
@@ -59,7 +70,7 @@ export async function HeroSection() {
 
           <div
             aria-hidden="true"
-            className="flex w-full flex-wrap items-center justify-center gap-10"
+            className="flex w-full flex-wrap items-center justify-center gap-3 sm:gap-10 mb-3 sm:mb-0"
           >
             <Image
               src={Logo01}

@@ -61,9 +61,30 @@ describe("HeroSection", () => {
     expect(screen.getByTestId("hero-cta-link").getAttribute("href")).toBe(
       `/#${t("anchor_contact")}`,
     );
+    expect(screen.getByTestId("hero-phone-link").getAttribute("href")).toBe(
+      t("contact_section_phone_1_href"),
+    );
+    expect(screen.getByTestId("hero-phone-link").getAttribute("aria-label")).toBe(
+      t("contact_section_phone_1"),
+    );
     expect(screen.getByAltText(t("home_background_alt"))).toBeDefined();
     expect(screen.getByAltText(t("home_partner_logo_1_alt"))).toBeDefined();
     expect(screen.getByAltText(t("home_partner_logo_5_alt"))).toBeDefined();
     expect(container.querySelectorAll("img")).toHaveLength(6);
+  });
+
+  it("keeps responsive classes for the phone CTA and hero partner logos", async () => {
+    const { container } = render(await HeroSection());
+
+    const heroPhoneLink = screen.getByTestId("hero-phone-link");
+    const partnerLogosWrapper = Array.from(
+      container.querySelectorAll('div[aria-hidden="true"]'),
+    ).find((element) => element.className.includes("flex-wrap"));
+
+    expect(heroPhoneLink.className).toContain("hidden");
+    expect(heroPhoneLink.className).toContain("md:flex");
+    expect(partnerLogosWrapper).toBeDefined();
+    expect(partnerLogosWrapper?.className).toContain("mb-3");
+    expect(partnerLogosWrapper?.className).toContain("sm:mb-0");
   });
 });
